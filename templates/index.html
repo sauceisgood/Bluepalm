@@ -2,205 +2,121 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Blue Palm Traveling · Viagens sem complicações</title>
-    <!-- Tailwind CSS + Google Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Palm Traveling · Ofertas de viagem</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <!-- Customização do tema Tailwind -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #F9F6F0 0%, #E9F0EC 100%);
-        }
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
-        }
-        .btn-wa {
-            transition: all 0.2s ease;
-        }
-        .btn-wa:hover {
-            background-color: #075e54 !important;
-            transform: scale(1.02);
-        }
-        .badge {
-            backdrop-filter: blur(4px);
-        }
-        .navbar-blur {
-            backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 245, 0.85);
-        }
+        * { font-family: 'Inter', sans-serif; }
+        .btn-wa { transition: all 0.2s; }
+        .btn-wa:hover { background-color: #075e54 !important; transform: scale(1.02); }
+        .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1); }
+        .discount-badge { background: #F97316; }
     </style>
 </head>
-<body class="bg-white text-gray-800 scroll-smooth">
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 navbar-blur border-b border-gray-200/50 py-4 px-6 md:px-12 transition-all">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- Header estilo lastminute -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <span class="text-3xl">🌴</span>
-                <span class="font-serif text-2xl font-semibold tracking-tight text-[#0F2A4A]">Blue Palm</span>
-                <span class="font-serif text-2xl font-light text-[#2B5B4B]">Traveling</span>
+                <span class="text-2xl">🌴</span>
+                <span class="font-bold text-xl text-gray-800">Blue Palm</span>
+                <span class="text-sm text-gray-500 hidden sm:inline">Traveling</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-700">
-                <a href="#home" class="hover:text-[#2B5B4B] transition">Início</a>
-                <a href="#story" class="hover:text-[#2B5B4B] transition">A nossa história</a>
-                <a href="#packs" class="hover:text-[#2B5B4B] transition">Packs</a>
-                <a href="#contact" class="hover:text-[#2B5B4B] transition">Contacto</a>
-            </div>
-            <a href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de saber mais sobre os vossos packs de viagem 🌊" target="_blank" class="hidden md:flex bg-[#25D366] text-white px-5 py-2 rounded-full text-sm font-semibold items-center gap-2 shadow-sm btn-wa">
-                <span>📲</span> WhatsApp
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-gradient min-h-screen flex items-center pt-28 pb-20 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="text-left space-y-6">
-                <div class="inline-block bg-white/60 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium text-[#2B5B4B] border border-white/40">
-                    🌊 Escapadelas sem stress
-                </div>
-                <h1 class="text-5xl md:text-7xl font-serif font-semibold leading-tight text-[#0F2A4A]">
-                    Deixa o mundo<br>tratar do resto.
-                </h1>
-                <p class="text-lg text-gray-600 max-w-lg leading-relaxed">
-                    Voos, hotéis, transfers e experiências — tudo pensado para que vivas cada momento sem preocupações. Bem-vindo ao teu próximo destino.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#packs" class="bg-[#0F2A4A] text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-[#1c3e62] transition">Explorar packs →</a>
-                    <a href="#story" class="border border-[#2B5B4B] text-[#2B5B4B] px-8 py-3 rounded-full font-semibold hover:bg-[#2B5B4B]/10 transition">Saber mais</a>
-                </div>
-            </div>
-            <div class="relative">
-                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop" alt="Praia com palmeiras" class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]">
-                <div class="absolute -bottom-6 -left-6 bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-lg hidden md:block">
-                    <p class="text-sm font-medium">⭐ 4.98 · +500 clientes</p>
-                    <p class="text-xs text-gray-500">“A melhor experiência da minha vida”</p>
-                </div>
+            <div class="flex gap-4 items-center">
+                <span class="text-sm text-gray-600 hidden md:block">📞 +351 917 359 224</span>
+                <a href="#ofertas" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">Ofertas</a>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Storytelling da marca -->
-    <section id="story" class="py-24 px-6 bg-white">
+    <!-- Hero section com fundo claro e título chamativo -->
+    <section class="bg-gradient-to-r from-orange-50 to-white py-16 px-4">
         <div class="max-w-6xl mx-auto text-center">
-            <span class="text-[#2B5B4B] font-semibold tracking-wide uppercase text-sm">A nossa alma</span>
-            <h2 class="text-4xl md:text-5xl font-serif font-medium mt-2 text-[#0F2A4A]">🌴 Blue Palm Traveling</h2>
-            <div class="max-w-3xl mx-auto mt-8 space-y-6 text-gray-600 text-left md:text-center">
-                <p class="text-lg leading-relaxed">
-                    <span class="font-semibold text-[#0F2A4A]">Blue Palm Traveling</span> nasceu da ideia de que viajar não deve ser complicado — deve ser <span class="italic">natural como respirar</span>.
-                </p>
-                <p class="text-lg leading-relaxed">
-                    Inspirada pelo ritmo lento das palmeiras e pelo azul profundo do oceano, a marca representa escapadelas completas onde tudo já está tratado: voos, hotéis, transferes e experiências.
-                </p>
-                <p class="text-lg leading-relaxed font-serif text-[#2B5B4B] text-xl">
-                    “Mais do que viagens, criamos momentos.”
-                </p>
-                <p class="text-lg leading-relaxed">
-                    Do nascer ao pôr do sol em destinos tropicais, cada pacote é pensado para que só tenhas de fazer uma coisa: <strong>viver</strong>.
-                </p>
-            </div>
-            <div class="mt-12 flex justify-center gap-2 text-4xl opacity-60">
-                <span>🌊</span> <span>🌴</span> <span>☀️</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">Ofertas de <span class="text-orange-600">última hora</span></h1>
+            <p class="text-gray-600 text-lg mt-3 max-w-2xl mx-auto">Pack completos com voos, hotel e transfers. Descontos exclusivos para reserva imediata.</p>
+            <div class="mt-6 flex justify-center gap-3">
+                <span class="bg-white shadow-sm px-4 py-2 rounded-full text-sm">✈️ Voos incluídos</span>
+                <span class="bg-white shadow-sm px-4 py-2 rounded-full text-sm">🏨 Hotéis selecionados</span>
+                <span class="bg-white shadow-sm px-4 py-2 rounded-full text-sm">🚗 Transferes</span>
             </div>
         </div>
     </section>
 
-    <!-- Packs de Viagem -->
-    <section id="packs" class="py-24 px-6 bg-[#F9F8F4]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-medium text-[#0F2A4A]">Escolhe o teu pack</h2>
-                <p class="text-gray-500 mt-3 max-w-xl mx-auto">Todos incluem voos, alojamento, transferes e uma experiência única.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {% for pack in packs %}
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover transition flex flex-col h-full">
-                    <div class="relative h-52 overflow-hidden">
-                        <img src="{{ pack.image }}" alt="{{ pack.title }}" class="w-full h-full object-cover transition hover:scale-105 duration-500">
-                        {% if pack.badge %}
-                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#0F2A4A] text-xs font-bold px-3 py-1 rounded-full shadow-md badge">{{ pack.badge }}</span>
+    <!-- Grid de ofertas (cards estilo HolidayPirates) -->
+    <section id="ofertas" class="max-w-7xl mx-auto py-16 px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800">🔥 Ofertas imperdíveis</h2>
+            <p class="text-gray-500 mt-2">Preços por pessoa, com base em viagens de 7 dias.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for pack in packs %}
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md card-hover flex flex-col h-full relative">
+                <!-- Imagem -->
+                <div class="relative h-48 overflow-hidden">
+                    <img src="{{ pack.image }}" alt="{{ pack.title }}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    <!-- Badge de desconto ou oferta -->
+                    {% if pack.discount_percent %}
+                        <div class="absolute top-3 left-3 discount-badge text-white text-xs font-bold px-2 py-1 rounded-md shadow-md">-{{ pack.discount_percent }}%</div>
+                    {% elif pack.badge %}
+                        <div class="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-md shadow-md">{{ pack.badge }}</div>
+                    {% endif %}
+                    <!-- Badge "Últimas vagas" pequeno -->
+                    <div class="absolute bottom-3 left-3 bg-black/70 text-white text-[11px] px-2 py-0.5 rounded-full">✈️ {{ pack.from }}</div>
+                </div>
+                <!-- Conteúdo -->
+                <div class="p-4 flex flex-col flex-grow">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-900">{{ pack.title }}</h3>
+                        <span class="text-xs text-gray-500">{{ pack.dates }}</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mt-1">{{ pack.subtitle }}</p>
+                    <p class="text-gray-600 text-sm mt-2 line-clamp-2">{{ pack.description }}</p>
+                    
+                    <div class="mt-4 flex items-baseline gap-2">
+                        {% if pack.old_price %}
+                            <span class="text-2xl font-extrabold text-orange-600">{{ pack.price }}</span>
+                            <span class="text-sm text-gray-400 line-through">{{ pack.old_price }}</span>
+                            <span class="text-xs text-green-600 font-semibold ml-auto">Poupe {{ pack.discount_percent }}%</span>
+                        {% else %}
+                            <span class="text-2xl font-extrabold text-orange-600">{{ pack.price }}</span>
                         {% endif %}
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-serif font-semibold text-[#0F2A4A]">{{ pack.title }}</h3>
-                        <p class="text-sm text-gray-500 mt-1">{{ pack.subtitle }}</p>
-                        <p class="text-gray-600 text-sm mt-3 leading-relaxed">{{ pack.description }}</p>
-                        <div class="mt-5 flex items-baseline gap-2">
-                            <span class="text-2xl font-bold text-[#2B5B4B]">{{ pack.price }}</span>
-                            {% if pack.old_price %}
-                            <span class="text-sm text-gray-400 line-through">{{ pack.old_price }}</span>
-                            {% endif %}
-                        </div>
-                        <div class="mt-6">
-                            {% set mensagem = "Olá! Estou interessado no pack *" + pack.title + "* (" + pack.subtitle + "). Podem enviar-me mais informações? Obrigado 🌴" %}
-                            {% set url_wa = "https://wa.me/" + whatsapp_number + "?text=" + mensagem | urlencode %}
-                            <a href="{{ url_wa }}" target="_blank" class="btn-wa w-full flex justify-center items-center gap-2 bg-[#25D366] hover:bg-[#075e54] text-white font-semibold py-2.5 rounded-xl transition shadow-sm">
-                                📲 Reservar via WhatsApp
-                            </a>
-                        </div>
-                    </div>
+                    <p class="text-xs text-gray-400 mt-1">por pessoa + taxas</p>
+                    
+                    <!-- Botão WhatsApp -->
+                    {% set mensagem = "Olá! Estou interessado no pack *" + pack.title + "* para " + pack.dates + " a partir de " + pack.from + ". Podem enviar-me mais informações?" %}
+                    {% set url_wa = "https://wa.me/" + whatsapp_number + "?text=" + mensagem | urlencode %}
+                    <a href="{{ url_wa }}" target="_blank" class="btn-wa mt-5 w-full flex justify-center items-center gap-2 bg-[#25D366] hover:bg-[#075e54] text-white font-semibold py-2.5 rounded-xl transition shadow-sm">
+                        📲 Reservar via WhatsApp
+                    </a>
                 </div>
-                {% endfor %}
             </div>
-            <div class="text-center mt-16">
-                <p class="text-gray-500 text-sm">Todos os preços incluem taxas e assistência em viagem. Sujeito a disponibilidade.</p>
-            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-12">
+            <p class="text-sm text-gray-400">* Os preços indicados são por pessoa, sujeitos a disponibilidade. Consulte condições.</p>
         </div>
     </section>
 
-    <!-- Call to Action / Contacto -->
-    <section id="contact" class="py-24 px-6 bg-gradient-to-r from-[#0F2A4A] to-[#1d4e6e] text-white">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <h2 class="text-4xl font-serif">Pronto para a tua próxima escapadela?</h2>
-            <p class="text-lg text-white/80 max-w-2xl mx-auto">Fala connosco diretamente no WhatsApp. Vamos tratar de todos os detalhes — tu só precisas de fazer as malas.</p>
-            <a href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de receber o catálogo de viagens Blue Palm ✈️" target="_blank" class="inline-flex items-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg btn-wa hover:shadow-xl transition">
-                📲 Iniciar conversa no WhatsApp
+    <!-- Call to Action Final -->
+    <section class="bg-gray-900 text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold">Não perca estas ofertas</h2>
+            <p class="mt-3 text-gray-300">Fale connosco no WhatsApp e garanta já o seu lugar.</p>
+            <a href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de ver mais ofertas de viagem ✈️" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#075e54] text-white px-8 py-3 rounded-full font-semibold mt-6 transition shadow-lg">
+                📲 Falar com um consultor
             </a>
-            <div class="pt-10 flex justify-center gap-8 text-sm text-white/70">
-                <div>📞 +351 912 345 678</div>
-                <div>✉️ ola@bluepalmtraveling.com</div>
-            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 py-10 px-6 text-center text-gray-500 text-sm">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-1">
-                <span>🌴</span>
-                <span class="font-serif">Blue Palm Traveling</span>
-                <span class="mx-2">·</span>
-                <span>Viajar sem complicações</span>
-            </div>
-            <div class="flex gap-6">
-                <a href="#" class="hover:text-[#2B5B4B]">Termos e condições</a>
-                <a href="#" class="hover:text-[#2B5B4B]">Política de privacidade</a>
-            </div>
-            <div>© 2025 Blue Palm Traveling · Todos os momentos reservados</div>
+    <!-- Footer simples -->
+    <footer class="bg-white border-t py-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Blue Palm Traveling · Todos os direitos reservados · <a href="#" class="text-orange-600">Termos e condições</a></p>
         </div>
     </footer>
-
-    <!-- Pequeno script para navbar com background dinâmico (opcional) -->
-    <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 10) {
-                nav.classList.add('shadow-sm');
-            } else {
-                nav.classList.remove('shadow-sm');
-            }
-        });
-    </script>
 </body>
 </html>
