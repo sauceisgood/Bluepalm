@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Viajante · Blue Palm Traveling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .hero-bg-manual {
+            background-image: url('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?w=1600&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15,42,74,0.85) 0%, rgba(43,91,75,0.8) 100%);
+        }
+        .card-tip {
+            transition: transform 0.2s;
+        }
+        .card-tip:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header igual ao site principal (com logo) -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://i.ibb.co/TDFVYVn8/Picsart-26-04-28-14-35-08-352.png" alt="Blue Palm Traveling" class="h-10 w-10 object-contain">
+                <span class="text-xl font-bold text-gray-800 hidden sm:inline">Blue Palm</span>
+            </div>
+            <div class="flex gap-4 items-center">
+                <a href="/" class="text-gray-600 hover:text-orange-600 text-sm font-medium">← Voltar às ofertas</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero do manual -->
+    <section class="hero-bg-manual relative">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="relative z-10 py-20 px-4 text-center text-white">
+            <div class="max-w-4xl mx-auto">
+                <i class="fas fa-book-open text-5xl mb-4"></i>
+                <h1 class="text-4xl md:text-5xl font-bold">Manual Completo do Viajante Inteligente</h1>
+                <p class="text-xl mt-4 text-white/90">Fora da Europa · Dicas para poupar centenas de euros e evitar armadilhas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introdução -->
+    <section class="max-w-6xl mx-auto py-12 px-4">
+        <div class="bg-white rounded-2xl shadow-md p-8 text-center">
+            <p class="text-gray-600 text-lg">Viajar fora da Europa pode ser uma experiência incrível — mas também onde mais dinheiro se perde sem perceber porquê.<br>
+            Este guia mostra-te como viajar de forma <strong>segura, prática e económica</strong>, evitando armadilhas comuns.</p>
+        </div>
+    </section>
+
+    <!-- Grid de dicas -->
+    <div class="max-w-7xl mx-auto px-4 pb-16 grid md:grid-cols-2 gap-8">
+        
+        <!-- 1. Pagamentos -->
+        <div class="bg-white rounded-2xl shadow-sm card-tip p-6 border-l-8 border-orange-500">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-credit-card text-3xl text-orange-500"></i>
+                <h2 class="text-2xl font-bold text-gray-800">💳 Pagamentos Inteligentes</h2>
+            </div>
+            <p class="text-gray-600 mb-3">A maioria dos viajantes perde dinheiro aqui — e nem se apercebe.</p>
+            <div class="bg-green-50 p-4 rounded-xl mb-4">
+                <p class="font-semibold text-green-800">✔ O que fazer:</p>
+                <ul class="list-disc list-inside text-gray-700 mt-1">
+                    <li>Usa cartões como <strong>Revolut</strong> ou <strong>Wise</strong></li>
+                    <li>Ativa pagamentos internacionais antes de viajar</li>
+                    <li>Usa cartão sempre que possível (mais seguro que dinheiro físico)</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-4 rounded-xl">
+                <p class="font-semibold text-red-800">❗ Regra CRÍTICA:</p>
+                <p>Quando pagares, vais ver isto: <em>“Pagar em EUR ou moeda local?”</em><br>
+                👉 <strong>Escolhe sempre moeda local</strong>. Se escolheres EUR, aceitas uma conversão inflacionada – perdes 5% a 10%.</p>
+                <div class="mt-3 text-center">
+                    <a href="https://revolut.com" target="_blank" class="inline-block bg-orange-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-700 transition">💡 Regista-te no Revolut</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Levantamentos -->
+        <div class="bg-white rounded-2xl shadow-sm card-tip p-6 border-l-8 border-red-500">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-money-bill-wave text-3xl text-red-500"></i>
+                <h2 class="text-2xl font-bold text-gray-800">🏧 Levantamentos (ATM)</h2>
+            </div>
+            <p class="text-gray-600 mb-3">Onde a maioria é enganada.</p>
+            <div class="bg-red-50 p-4 rounded-xl mb-4">
+                <p class="font-semibold text-red-800">❌ Evita SEMPRE:</p>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Euronet Worldwide</li>
+                    <li>ATM em zonas ultra turísticas</li>
+                    <li>Máquinas genéricas sem banco associado</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-xl">
+                <p class="font-semibold text-green-800">✔ Prefere:</p>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Bancos locais reconhecidos</li>
+                    <li>ATM dentro de bancos, centros comerciais ou aeroportos (oficiais)</li>
+                </ul>
+                <p class="mt-2"><strong>💡 Estratégia:</strong> Levanta valores maiores → menos taxas. <br>Recusa sempre a conversão sugerida pelo ATM.</p>
+            </div>
+        </div>
+
+        <!-- 3. Câmbio -->
+        <div class="bg-white rounded-2xl shadow-sm card-tip p-6 border-l-8 border-yellow-500">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-exchange-alt text-3xl text-yellow-600"></i>
+                <h2 class="text-2xl font-bold text-gray-800">💱 Câmbio de Moeda</h2>
+            </div>
+            <p class="text-gray-600 mb-3">Evitar perdas enormes.</p>
+            <div class="bg-red-50 p-4 rounded-xl mb-4">
+                <p class="font-semibold text-red-800">❌ Nunca uses:</p>
+                <ul class="list-disc list-inside"><li>Casas de câmbio em aeroportos</li><li>Hotéis</li><li>Guias turísticos</li></ul>
+                <p class="mt-2 text-sm">👉 Margens podem chegar a 15% ou mais.</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-xl">
+                <p class="font-semibold text-green-800">✔ Melhor opção:</p>
+                <p>Levantar diretamente com cartão (Revolut/Wise) → taxa real de mercado, sem comissões escondidas.</p>
+            </div>
+        </div>
+
+        <!-- 4. Transportes -->
+        <div class="bg-white rounded-2xl shadow-sm card-tip p-6 border-l-8 border-blue-500">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-car text-3xl text-blue-500"></i>
+                <h2 class="text-2xl font-bold text-gray-800">🚕 Transportes</h2>
+            </div>
+            <p class="text-gray-600 mb-3">Evitar scams clássicos.</p>
+            <div class="bg-green-50 p-4 rounded-xl mb-4">
+                <p class="font-semibold text-green-800">✔ Apps essenciais:</p>
+                <p>Uber, Bolt, Grab (Ásia), DiDi</p>
+            </div>
+            <div class="bg-red-50 p-4 rounded-xl">
+                <p class="font-semibold text-red-800">❌ Evita:</p>
+                <ul class="list-disc list-inside"><li>Táxis sem taxímetro</li><li>“Preço fixo amigo”</li><li>“Taxímetro avariado”</li></ul>
+                <p class="mt-2"><strong>💡 Dica:</strong> Confirma sempre o preço na app antes. Faz screenshot da viagem.</p>
+            </div>
+        </div>
+
+        <!-- 5. Compras -->
+        <div class="bg-white rounded-2xl shadow-sm card-tip p-6 border-l-8 border-purple-500">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-shopping-bag text-3xl text-purple-500"></i>
+                <h2 class="text-2xl font-bold text-gray-800">🛍️ Compras & Lembranças</h2>
+            </div>
+            <div class="bg-red-50 p-4 rounded-xl mb-4">
+                <p class="font-semibold text-red-800">❌ Onde NÃO comprar:</p>
+                <ul><li>Lojas junto a monumentos</li><li>Aeroportos</li><li>Tours organizados</li></ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-xl">
+                <p class="font-semibold text-green-800">✔ Onde comprar:</p>
+                <ul><li>Mercados locais</li><li>Supermercados</li><li>Zonas residenciais</li></ul>
+                <p class="mt-2"><strong>Regra de ouro:</strong> Se há muitos turistas → o preço está inflacionado.</p>
+                <p><strong>🤝 Negociação:</strong> Em países como Marrocos, México, Tailândia, negociar é esperado. Começa a 50% do preço pedido, sobe gradualmente.</p>
+            </div>
+        </div>
+
+        <!-- 6. Internet -->
+        <div class="bg-white rounded-2xl shadow-sm card-tip p-6 border-l-8 border-indigo-500">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-wifi text-3xl text-indigo-500"></i>
+                <h2 class="text-2xl font-bold text-gray-800">🌐 Internet & Dados</h2>
+            </div>
+            <p class="text-gray-600 mb-3">Evita roaming caro.</p>
+            <div class="bg-green-50 p-4 rounded-xl">
+                <p class="font-semibold text-green-800">✔ Usa:</p>
+                <ul><li>eSIM (rápido e prático)</li><li>Cartão SIM local</li></ul>
+                <p><strong>💰 Custo normal:</strong> 10€ a 20€ por toda a viagem.</p>
+            </div>
+        </div>
+
+        <!-- 7. Segurança Financeira + Erros clássicos juntos num card duplo? Vamos fazer separado mas manter layout -->
+    </div>
+
+    <!-- Secção extra: Segurança Financeira e Erros Clássicos (2 colunas) -->
+    <div class="max-w-7xl mx-auto px-4 pb-16 grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-shield-alt text-3xl text-green-700"></i>
+                <h2 class="text-2xl font-bold text-gray-800">🔐 Segurança Financeira</h2>
+            </div>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>Leva 2 cartões, guarda-os separados (um contigo, um no alojamento)</li>
+                <li>Ativa notificações de pagamento e limites diários</li>
+                <li>Usa cofres do hotel quando possível</li>
+            </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fas fa-exclamation-triangle text-3xl text-red-600"></i>
+                <h2 class="text-2xl font-bold text-gray-800">⚠️ Erros Clássicos</h2>
+            </div>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>Aceitar conversão para EUR</li>
+                <li>Usar ATM tipo Euronet Worldwide</li>
+                <li>Confiar em taxistas sem app</li>
+                <li>Trocar dinheiro em aeroportos</li>
+                <li>Comprar em zonas turísticas</li>
+                <li>Não ter internet móvel</li>
+                <li>Andar com todo o dinheiro junto</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Estratégia Inteligente (Resumo PRO) -->
+    <section class="bg-gradient-to-r from-blue-900 to-teal-800 text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <i class="fas fa-star-of-life text-4xl mb-4"></i>
+            <h2 class="text-3xl font-bold">📌 Estratégia Inteligente (Resumo PRO)</h2>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-left text-gray-200">
+                <ul class="list-disc list-inside">
+                    <li>Usa Revolut ou Wise</li>
+                    <li>Paga sempre em moeda local</li>
+                    <li>Levanta dinheiro apenas em bancos</li>
+                    <li>Usa apps de transporte</li>
+                </ul>
+                <ul class="list-disc list-inside">
+                    <li>Compra fora de zonas turísticas</li>
+                    <li>Mantém backup financeiro</li>
+                    <li>👉 Isto sozinho pode poupar-te centenas de euros por viagem</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checklist Final -->
+    <section class="max-w-4xl mx-auto py-16 px-4">
+        <div class="bg-white rounded-2xl shadow-md p-8 text-center">
+            <i class="fas fa-check-circle text-5xl text-green-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800">✅ Checklist Final (Antes de Viajar)</h2>
+            <div class="mt-6 text-left grid sm:grid-cols-2 gap-3 text-gray-700">
+                <div><i class="fas fa-check text-green-500 mr-2"></i> Cartão sem taxas ativo</div>
+                <div><i class="fas fa-check text-green-500 mr-2"></i> Apps instaladas (Uber/Bolt/etc.)</div>
+                <div><i class="fas fa-check text-green-500 mr-2"></i> Internet preparada (eSIM/SIM)</div>
+                <div><i class="fas fa-check text-green-500 mr-2"></i> Plano para levantar dinheiro</div>
+                <div><i class="fas fa-check text-green-500 mr-2"></i> Conhecimento básico do destino</div>
+                <div><i class="fas fa-check text-green-500 mr-2"></i> Seguro de viagem</div>
+            </div>
+            <div class="mt-8">
+                <a href="/" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition">← Voltar às ofertas de viagem</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer igual ao site -->
+    <footer class="bg-white border-t py-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© 2025 Blue Palm Traveling · Manual do Viajante</p>
+                <a href="https://instagram.com/bluepalmtraveling" target="_blank" class="text-gray-600 hover:text-orange-600 transition">
+                    <i class="fab fa-instagram"></i> @bluepalmtraveling
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
