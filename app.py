@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Lê o número do WhatsApp de uma variável de ambiente (recomendado)
 # ou usa um fallback para desenvolvimento
-WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "351912345678")
+WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "351936387563")
 
 # Dados dos packs de viagem
 packs = [
