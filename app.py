@@ -13,7 +13,7 @@ packs = [
         "description": "Resort overwater, pequeno-almoço, transferes e sunset cruise.",
         "price": "1.890€",
         "old_price": "2.490€",
-        "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?w=600&h=400&fit=crop",
+        "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg",
         "badge": "Oferta relâmpago",
         "dates": "10 Mai - 17 Mai",
         "from": "Lisboa"
@@ -37,7 +37,7 @@ packs = [
         "description": "Eco‑lodges, transfers, zipline e floresta tropical.",
         "price": "1.690€",
         "old_price": None,
-        "image": "https://images.pexels.com/photos/3229659/pexels-photo-3229659.jpeg?w=600&h=400&fit=crop",
+        "image": "https://images.pexels.com/photos/3229659/pexels-photo-3229659.jpeg",
         "badge": "Últimas vagas",
         "dates": "5 Jul - 13 Jul",
         "from": "Lisboa"
@@ -49,7 +49,7 @@ packs = [
         "description": "Caverna tradicional em Oia, pequeno-almoço, jantar romântico e catamarã.",
         "price": "1.190€",
         "old_price": "1.590€",
-        "image": "https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?w=600&h=400&fit=crop",
+        "image": "https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg",
         "badge": "-25%",
         "dates": "15 Set - 20 Set",
         "from": "Faro"
