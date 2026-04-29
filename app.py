@@ -37,7 +37,7 @@ packs = [
         "description": "Eco‑lodges, transfers, zipline e floresta tropical.",
         "price": "1.690€",
         "old_price": None,
-        "image": "https://images.pexels.com/photos/3229659/pexels-photo-3229659.jpeg",
+        "image": "https://images.pexels.com/photos/12832297/pexels-photo-12832297.jpeg",
         "badge": "Últimas vagas",
         "dates": "5 Jul - 13 Jul",
         "from": "Lisboa"
