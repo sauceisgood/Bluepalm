@@ -25,7 +25,7 @@ packs = [
         "description": "Hotéis boutique, pequeno-almoço, tour cultural e spa.",
         "price": "1.490€",
         "old_price": "1.890€",
-        "image": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?w=600&h=400&fit=crop",
+        "image": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg",
         "badge": "-21%",
         "dates": "20 Jun - 30 Jun",
         "from": "Porto"
