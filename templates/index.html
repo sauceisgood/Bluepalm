@@ -180,9 +180,7 @@
                             <i class="fas fa-times text-xl"></i>
                         </button>
                     </div>
-                    <div class="mt-4 space-y-4" id="modal-content">
-                        <!-- Conteúdo preenchido por JavaScript -->
-                    </div>
+                    <div class="mt-4 space-y-4" id="modal-content"></div>
                 </div>
                 <div class="px-6 py-4 bg-gray-50 sm:flex sm:flex-row-reverse">
                     <a href="#" id="modal-wa-link" target="_blank" class="inline-flex w-full justify-center rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#075e54] sm:ml-3 sm:w-auto transition">
@@ -199,24 +197,30 @@
     <script>
         // Passar os dados dos packs do Flask para JavaScript
         window.packsData = {{ packs | tojson }};
+        window.whatsappNumber = '{{ whatsapp_number }}';
 
-        // Função para abrir modal
         function openModal(packId) {
             const pack = window.packsData.find(p => p.id === packId);
             if (!pack) return;
 
-            // Montar listas de included e common_tours
-            const includedHtml = pack.included ? pack.included.map(item => `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>${escapeHtml(item)}</span></li>`).join('') : '<li>Não especificado</li>';
-            const toursHtml = pack.common_tours ? pack.common_tours.map(tour => `<li class="flex items-start gap-2"><i class="fas fa-umbrella-beach text-orange-500 mt-0.5"></i><span>${escapeHtml(tour)}</span></li>`).join('') : '<li>Não especificado</li>';
+            const includedHtml = pack.included && pack.included.length
+                ? pack.included.map(item => `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>${escapeHtml(item)}</span></li>`).join('')
+                : '<li>Não especificado</li>';
+
+            const toursHtml = pack.common_tours && pack.common_tours.length
+                ? pack.common_tours.map(tour => `<li class="flex items-start gap-2"><i class="fas fa-umbrella-beach text-orange-500 mt-0.5"></i><span>${escapeHtml(tour)}</span></li>`).join('')
+                : '<li>Informação disponível brevemente</li>';
+
+            const desc = pack.long_description ? escapeHtml(pack.long_description) : escapeHtml(pack.description);
 
             const contentHtml = `
-                <p class="text-gray-700">${escapeHtml(pack.long_description) || escapeHtml(pack.description)}</p>
+                <p class="text-gray-700">${desc}</p>
                 <div>
                     <h4 class="font-semibold text-gray-900">✈️ O que está incluído:</h4>
                     <ul class="mt-2 space-y-1">${includedHtml}</ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-gray-900">🏝️ Tours mais comuns neste destino:</h4>
+                    <h4 class="font-semibold text-gray-900">🏝️ Tours mais comuns:</h4>
                     <ul class="mt-2 space-y-1">${toursHtml}</ul>
                 </div>
             `;
@@ -224,26 +228,19 @@
             document.getElementById('modal-title').innerText = pack.title;
             document.getElementById('modal-content').innerHTML = contentHtml;
 
-            // Atualizar link do WhatsApp na modal
             const waMessage = `Olá! Estou interessado no pack *${pack.title}* (${pack.dates} a partir de ${pack.from}). Gostaria de saber mais sobre as experiências incluídas.`;
-            const waUrl = `https://wa.me/${{{ whatsapp_number | tojson }}}?text=${encodeURIComponent(waMessage)}`;
+            const waUrl = `https://wa.me/${window.whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('modal-wa-link').href = waUrl;
 
-            // Mostrar modal
             document.getElementById('destinationModal').classList.remove('hidden');
         }
 
-        // Fechar modal
         function closeModal() {
             document.getElementById('destinationModal').classList.add('hidden');
         }
 
-        // Fechar ao clicar ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') closeModal();
-        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-        // Função auxiliar para escapar HTML (evitar injeção)
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -253,16 +250,11 @@
                 return m;
             });
         }
-    </script>
 
-    <script>
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
-            if (window.scrollY > 10) {
-                header.classList.add('shadow-md');
-            } else {
-                header.classList.remove('shadow-md');
-            }
+            if (window.scrollY > 10) header.classList.add('shadow-md');
+            else header.classList.remove('shadow-md');
         });
     </script>
 </body>
