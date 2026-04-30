@@ -7,7 +7,7 @@
     <title>Blue Palm Traveling · Ofertas de viagem</title>
     <!-- Tailwind CSS + Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome 6 (gratuito) para ícone Instagram -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -40,13 +40,13 @@
         }
     </style>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8D37FE2PY4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-8D37FE2PY4);
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8D37FE2PY4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8D37FE2PY4');
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -64,7 +64,7 @@
         </div>
     </header>
 
-    <!-- Hero section com fundo luxuoso e transparência -->
+    <!-- Hero section -->
     <section class="hero-bg relative">
         <div class="hero-overlay absolute inset-0"></div>
         <div class="relative z-10 py-20 px-4 md:py-28">
@@ -81,7 +81,7 @@
         </div>
     </section>
 
-    <!-- Grid de ofertas (cards estilo HolidayPirates) -->
+    <!-- Grid de ofertas -->
     <section id="ofertas" class="max-w-7xl mx-auto py-16 px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-gray-800">🔥 Ofertas imperdíveis</h2>
@@ -90,19 +90,15 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for pack in packs %}
             <div class="bg-white rounded-2xl overflow-hidden shadow-md card-hover flex flex-col h-full relative">
-                <!-- Imagem -->
                 <div class="relative h-48 overflow-hidden">
                     <img src="{{ pack.image }}" alt="{{ pack.title }}" class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                    <!-- Badge de desconto ou oferta -->
                     {% if pack.discount_percent %}
                         <div class="absolute top-3 left-3 discount-badge text-white text-xs font-bold px-2 py-1 rounded-md shadow-md">-{{ pack.discount_percent }}%</div>
                     {% elif pack.badge %}
                         <div class="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-md shadow-md">{{ pack.badge }}</div>
                     {% endif %}
-                    <!-- Badge "Últimas vagas" e origem -->
                     <div class="absolute bottom-3 left-3 bg-black/70 text-white text-[11px] px-2 py-0.5 rounded-full">✈️ {{ pack.from }}</div>
                 </div>
-                <!-- Conteúdo -->
                 <div class="p-4 flex flex-col flex-grow">
                     <div class="flex justify-between items-start">
                         <h3 class="text-xl font-bold text-gray-900">{{ pack.title }}</h3>
@@ -122,10 +118,15 @@
                     </div>
                     <p class="text-xs text-gray-400 mt-1">por pessoa + taxas</p>
                     
-                    <!-- Botão WhatsApp com mensagem personalizada -->
+                    <!-- Botão Ver detalhes (abre modal) -->
+                    <button onclick="openModal({{ pack.id }})" class="mt-3 w-full flex justify-center items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 rounded-xl transition">
+                        🔍 Ver detalhes do destino
+                    </button>
+                    
+                    <!-- Botão WhatsApp -->
                     {% set mensagem = "Olá! Estou interessado no pack *" + pack.title + "* para " + pack.dates + " a partir de " + pack.from + ". Podem enviar-me mais informações?" %}
                     {% set url_wa = "https://wa.me/" + whatsapp_number + "?text=" + mensagem | urlencode %}
-                    <a href="{{ url_wa }}" target="_blank" class="btn-wa mt-5 w-full flex justify-center items-center gap-2 bg-[#25D366] hover:bg-[#075e54] text-white font-semibold py-2.5 rounded-xl transition shadow-sm">
+                    <a href="{{ url_wa }}" target="_blank" class="btn-wa mt-2 w-full flex justify-center items-center gap-2 bg-[#25D366] hover:bg-[#075e54] text-white font-semibold py-2.5 rounded-xl transition shadow-sm">
                         📲 Reservar via WhatsApp
                     </a>
                 </div>
@@ -148,24 +149,111 @@
         </div>
     </section>
 
-    <!-- Footer com Instagram -->
-<footer class="bg-white border-t py-8 text-center text-gray-500 text-sm">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2026 Blue Palm Traveling · Todos os direitos reservados</p>
-            <div class="flex gap-6 items-center">
-                <a href="#" class="text-orange-600 hover:underline">Termos e condições</a>
-                <a href="https://instagram.com/bluepalmtraveling" target="_blank" class="text-gray-600 hover:text-orange-600 transition text-xl" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://tiktok.com/@bluepalmtraveling" target="_blank" class="text-gray-600 hover:text-orange-600 transition text-xl" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <span class="text-xs text-gray-400 hidden md:inline">bluepalmtraveling</span>
+    <!-- Footer -->
+    <footer class="bg-white border-t py-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© 2026 Blue Palm Traveling · Todos os direitos reservados</p>
+                <div class="flex gap-6 items-center">
+                    <a href="#" class="text-orange-600 hover:underline">Termos e condições</a>
+                    <a href="https://instagram.com/bluepalmtraveling" target="_blank" class="text-gray-600 hover:text-orange-600 transition text-xl" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://tiktok.com/@bluepalmtraveling" target="_blank" class="text-gray-600 hover:text-orange-600 transition text-xl" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <span class="text-xs text-gray-400 hidden md:inline">bluepalmtraveling</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL (janela flutuante) -->
+    <div id="destinationModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75" aria-hidden="true" onclick="closeModal()"></div>
+            <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="px-6 pt-6 pb-4 bg-white">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-2xl font-serif font-semibold text-gray-900" id="modal-title">...</h3>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-4 space-y-4" id="modal-content">
+                        <!-- Conteúdo preenchido por JavaScript -->
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 sm:flex sm:flex-row-reverse">
+                    <a href="#" id="modal-wa-link" target="_blank" class="inline-flex w-full justify-center rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#075e54] sm:ml-3 sm:w-auto transition">
+                        📲 Falar com consultor
+                    </a>
+                    <button onclick="closeModal()" type="button" class="inline-flex w-full justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
+                        Fechar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</footer>
+
+    <script>
+        // Passar os dados dos packs do Flask para JavaScript
+        window.packsData = {{ packs | tojson }};
+
+        // Função para abrir modal
+        function openModal(packId) {
+            const pack = window.packsData.find(p => p.id === packId);
+            if (!pack) return;
+
+            // Montar listas de included e common_tours
+            const includedHtml = pack.included ? pack.included.map(item => `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>${escapeHtml(item)}</span></li>`).join('') : '<li>Não especificado</li>';
+            const toursHtml = pack.common_tours ? pack.common_tours.map(tour => `<li class="flex items-start gap-2"><i class="fas fa-umbrella-beach text-orange-500 mt-0.5"></i><span>${escapeHtml(tour)}</span></li>`).join('') : '<li>Não especificado</li>';
+
+            const contentHtml = `
+                <p class="text-gray-700">${escapeHtml(pack.long_description) || escapeHtml(pack.description)}</p>
+                <div>
+                    <h4 class="font-semibold text-gray-900">✈️ O que está incluído:</h4>
+                    <ul class="mt-2 space-y-1">${includedHtml}</ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900">🏝️ Tours mais comuns neste destino:</h4>
+                    <ul class="mt-2 space-y-1">${toursHtml}</ul>
+                </div>
+            `;
+
+            document.getElementById('modal-title').innerText = pack.title;
+            document.getElementById('modal-content').innerHTML = contentHtml;
+
+            // Atualizar link do WhatsApp na modal
+            const waMessage = `Olá! Estou interessado no pack *${pack.title}* (${pack.dates} a partir de ${pack.from}). Gostaria de saber mais sobre as experiências incluídas.`;
+            const waUrl = `https://wa.me/${{{ whatsapp_number | tojson }}}?text=${encodeURIComponent(waMessage)}`;
+            document.getElementById('modal-wa-link').href = waUrl;
+
+            // Mostrar modal
+            document.getElementById('destinationModal').classList.remove('hidden');
+        }
+
+        // Fechar modal
+        function closeModal() {
+            document.getElementById('destinationModal').classList.add('hidden');
+        }
+
+        // Fechar ao clicar ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') closeModal();
+        });
+
+        // Função auxiliar para escapar HTML (evitar injeção)
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+    </script>
 
     <script>
         window.addEventListener('scroll', function() {
