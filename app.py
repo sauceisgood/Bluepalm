@@ -85,7 +85,7 @@ packs = [
         "common_tours": ["Chichén Itzá e cenote Ik Kil", "Tulum e praia paradisíaca", "Coco Bongo (show noturno)", "Isla Mujeres com natação com golfinhos", "Snorkeling em Puerto Morelos"],
         "price": "1.490€",
         "old_price": "1.990€",
-        "image": "https://images.pexels.com/photos/5409236/pexels-photo-5409236.jpeg",
+        "image": "https://images.pexels.com/photos/16116487/pexels-photo-16116487.jpeg",
         "badge": "-25%",
         "dates": "1 Out - 8 Out",
         "from": "Lisboa"
