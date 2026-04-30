@@ -9,7 +9,7 @@ sitemapper = Sitemapper(app)
 sitemapper.init_app(app)
 
 # Número do WhatsApp (substitua pelo seu ou use variável de ambiente)
-WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "351912345678")
+WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "351936387563")
 
 # -----------------------------
 # Dados dos packs de viagem (com imagens locais)
