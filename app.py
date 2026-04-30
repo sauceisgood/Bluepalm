@@ -1,10 +1,19 @@
 from flask import Flask, render_template
+from flask_sitemapper import Sitemapper
 import os
 
 app = Flask(__name__)
 
-WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "351936387563")
+# Inicializar o Sitemapper
+sitemapper = Sitemapper(app)
+sitemapper.init_app(app)
 
+# Número do WhatsApp (substitua pelo seu ou use variável de ambiente)
+WHATSAPP_NUMBER = os.environ.get("WHATSAPP_NUMBER", "351912345678")
+
+# -----------------------------
+# Dados dos packs de viagem (com imagens locais)
+# -----------------------------
 packs = [
     {
         "id": 1,
@@ -56,8 +65,13 @@ packs = [
     }
 ]
 
+# -----------------------------
+# Rota principal (landing page)
+# -----------------------------
+@sitemapper.include()
 @app.route('/')
 def index():
+    # Calcular desconto percentual para cada pack
     for pack in packs:
         if pack.get("old_price") and pack["old_price"]:
             old_str = pack["old_price"].replace("€", "").replace(".", "").replace(",", ".").strip()
@@ -73,9 +87,28 @@ def index():
             pack["discount_percent"] = None
     return render_template('index.html', packs=packs, whatsapp_number=WHATSAPP_NUMBER)
 
+# -----------------------------
+# Rota do Manual do Viajante
+# -----------------------------
+@sitemapper.include()
 @app.route('/manual')
 def manual():
     return render_template('manual.html')
+
+# -----------------------------
+# Rota do sitemap (para o Google)
+# -----------------------------
+@app.route('/sitemap.xml')
+def sitemap():
+    return sitemapper.generate()
+
+# -----------------------------
+# Se quiser criar uma rota /blog no futuro, basta adicionar:
+# @sitemapper.include()
+# @app.route('/blog')
+# def blog():
+#     return render_template('blog.html')
+# -----------------------------
 
 if __name__ == '__main__':
     app.run(debug=True)
