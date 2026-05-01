@@ -38,6 +38,52 @@
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255,255,255,0.4);
         }
+        /* Banner topo carrossel */
+        .top-banner {
+            background: rgba(34, 197, 94, 0.92);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .banner-text {
+            animation: fadeSlide 0.5s ease-out;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Popup notificações */
+        .notification-popup {
+            animation: slideInRight 0.3s ease-out forwards;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        /* Carrossel de reviews */
+        .reviews-scroll {
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .review-card {
+            scroll-snap-align: start;
+            flex: 0 0 85%;
+        }
+        @media (min-width: 768px) {
+            .review-card { flex: 0 0 45%; }
+        }
+        @media (min-width: 1024px) {
+            .review-card { flex: 0 0 30%; }
+        }
+        /* Esconder scrollbar (opcional) */
+        .reviews-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .reviews-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8D37FE2PY4"></script>
@@ -50,7 +96,15 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header com logo -->
+    <!-- BANNER SUPERIOR (carrossel) -->
+    <div class="top-banner text-white text-sm py-2 px-4 text-center relative z-40">
+        <div class="max-w-7xl mx-auto flex justify-center items-center gap-3 flex-wrap">
+            <i class="fas fa-bullhorn text-white/80"></i>
+            <span id="bannerMessage" class="banner-text font-medium">🌴 Promoção relâmpago: -20% em Maldivas esta semana!</span>
+        </div>
+    </div>
+
+    <!-- Header com logo (agora com margin-top extra para não esconder o banner) -->
     <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-200/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -118,12 +172,10 @@
                     </div>
                     <p class="text-xs text-gray-400 mt-1">por pessoa + taxas</p>
                     
-                    <!-- Botão Ver detalhes (abre modal) -->
                     <button onclick="openModal({{ pack.id }})" class="mt-3 w-full flex justify-center items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 rounded-xl transition">
                         🔍 Ver detalhes do destino
                     </button>
                     
-                    <!-- Botão WhatsApp -->
                     {% set mensagem = "Olá! Estou interessado no pack *" + pack.title + "* para " + pack.dates + " a partir de " + pack.from + ". Podem enviar-me mais informações?" %}
                     {% set url_wa = "https://wa.me/" + whatsapp_number + "?text=" + mensagem | urlencode %}
                     <a href="{{ url_wa }}" target="_blank" class="btn-wa mt-2 w-full flex justify-center items-center gap-2 bg-[#25D366] hover:bg-[#075e54] text-white font-semibold py-2.5 rounded-xl transition shadow-sm">
@@ -135,6 +187,24 @@
         </div>
         <div class="text-center mt-12">
             <p class="text-sm text-gray-400">* Os preços indicados são por pessoa, sujeitos a disponibilidade. Consulte condições.</p>
+        </div>
+    </section>
+
+    <!-- SECÇÃO DE REVIEWS (carrossel) -->
+    <section class="bg-white py-16 px-4 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <i class="fas fa-star text-yellow-400 text-2xl"></i>
+                <h2 class="text-3xl font-bold text-gray-800 mt-2">O que os nossos viajantes dizem</h2>
+                <p class="text-gray-500 mt-2">★★★★★ 4.98 · Mais de 500 avaliações reais</p>
+            </div>
+            <div class="reviews-scroll flex gap-6 pb-6 cursor-grab active:cursor-grabbing" id="reviewsContainer">
+                <!-- As reviews serão injetadas por JavaScript para facilitar manutenção -->
+            </div>
+            <div class="flex justify-center gap-3 mt-6">
+                <button id="prevReview" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-full transition"><i class="fas fa-chevron-left"></i></button>
+                <button id="nextReview" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-full transition"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </div>
     </section>
 
@@ -168,7 +238,7 @@
         </div>
     </footer>
 
-    <!-- MODAL (janela flutuante) -->
+    <!-- MODAL -->
     <div id="destinationModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75" aria-hidden="true" onclick="closeModal()"></div>
@@ -194,8 +264,140 @@
         </div>
     </div>
 
+    <!-- POPUP DE NOTIFICAÇÕES (canto inferior direito) -->
+    <div id="notificationPopup" class="fixed bottom-5 right-5 z-50 w-72 bg-white rounded-lg shadow-xl border-l-4 border-green-500 hidden notification-popup">
+        <div class="flex items-start p-3">
+            <div class="flex-shrink-0 pt-0.5">
+                <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            </div>
+            <div class="ml-3 flex-1">
+                <p id="notifText" class="text-sm font-medium text-gray-800">João acabou de reservar as suas férias</p>
+                <p class="text-xs text-gray-400 mt-1">agora mesmo</p>
+            </div>
+            <button onclick="closeNotification()" class="ml-auto text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xs"></i>
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Passar os dados dos packs do Flask para JavaScript
+        // ======================== DADOS ESTÁTICOS ==========================
+        // Lista de mensagens para o banner superior (carrossel)
+        const bannerMessages = [
+            "🌴 Promoção relâmpago: -20% em Maldivas esta semana!",
+            "✈️ Últimas vagas para Bali com 15% de desconto!",
+            "🏝️ Riviera Maya: 7 noites tudo incluído por apenas 1.490€!",
+            "⏰ Santorini: Reserve até domingo e ganhe jantar romântico grátis!",
+            "🎒 Costa Rica: Leve um tour de zipline oferta na compra do pack!"
+        ];
+        let currentBannerIndex = 0;
+
+        // Lista de notificações (simulando ações de clientes)
+        const notifications = [
+            "João acabou de reservar Maldivas",
+            "Andreia enviou pedido de contacto",
+            "Miguel comprou pack para Costa Rica",
+            "Sofia e Tiago reservaram Santorini (lua de mel)",
+            "Carlos pediu informações sobre Riviera Maya",
+            "Patrícia acabou de garantir Bali com desconto",
+            "Rita e João reservaram Maldivas com upgrade",
+            "Felipe solicitou chamada sobre Pacotes"
+        ];
+
+        // Dados das reviews
+        const reviewsData = [
+            { name: "Joana Silva", location: "Lisboa", rating: 5, date: "15 Mar 2026", text: "Experiência incrível! As Maldivas superaram todas as expectativas. Organização impecável da Blue Palm. Recomendo a todos!", avatar: "https://randomuser.me/api/portraits/women/1.jpg" },
+            { name: "Ricardo Costa", location: "Porto", rating: 5, date: "2 Abr 2026", text: "Bali é mágica e a equipa da Blue Palm tratou de tudo. Transferes, hotel, tours... só me preocupei em aproveitar. Voltarei a viajar convosco!", avatar: "https://randomuser.me/api/portraits/men/2.jpg" },
+            { name: "Mariana Almeida", location: "Faro", rating: 5, date: "10 Fev 2026", text: "Santorini é um sonho! O jantar romântico foi inesquecível. O suporte via WhatsApp foi rápido e atencioso. 5 estrelas!", avatar: "https://randomuser.me/api/portraits/women/3.jpg" },
+            { name: "André Lopes", location: "Coimbra", rating: 4.9, date: "20 Jan 2026", text: "Costa Rica superou tudo. Zipline, floresta, praias... tudo perfeito. Pequeno detalhe no check-in (resolvido rápido). Voltarei!", avatar: "https://randomuser.me/api/portraits/men/4.jpg" },
+            { name: "Carla Mendes", location: "Braga", rating: 5, date: "5 Mai 2026", text: "Riviera Maya é um paraíso. O tour a Chichén Itzá e o snorkeling no cenote foram os pontos altos. Tudo muito bem organizado. Obrigada!", avatar: "https://randomuser.me/api/portraits/women/5.jpg" }
+        ];
+
+        let notifTimeout = null;
+        let isNotificationVisible = false;
+
+        // ======================== FUNÇÕES ==========================
+        // Banner rotativo (intervalo de 6s)
+        function rotateBanner() {
+            currentBannerIndex = (currentBannerIndex + 1) % bannerMessages.length;
+            const bannerSpan = document.getElementById('bannerMessage');
+            if (bannerSpan) {
+                bannerSpan.classList.remove('banner-text');
+                void bannerSpan.offsetWidth; // força reflow
+                bannerSpan.textContent = bannerMessages[currentBannerIndex];
+                bannerSpan.classList.add('banner-text');
+            }
+        }
+        setInterval(rotateBanner, 6000);
+
+        // Notificações aleatórias randómicas (a cada 5 a 15 segundos)
+        function showRandomNotification() {
+            const randomIndex = Math.floor(Math.random() * notifications.length);
+            const notifText = notifications[randomIndex];
+            const notifDiv = document.getElementById('notificationPopup');
+            const textSpan = document.getElementById('notifText');
+            if (notifDiv && textSpan) {
+                textSpan.textContent = notifText;
+                notifDiv.classList.remove('hidden');
+                isNotificationVisible = true;
+                // Esconder após 5 segundos
+                if (notifTimeout) clearTimeout(notifTimeout);
+                notifTimeout = setTimeout(() => {
+                    notifDiv.classList.add('hidden');
+                    isNotificationVisible = false;
+                }, 5000);
+            }
+            // Agendar a próxima notificação com tempo aleatório entre 5 e 15 segundos
+            const nextDelay = Math.random() * (15000 - 5000) + 5000;
+            setTimeout(showRandomNotification, nextDelay);
+        }
+        // Função para fechar manualmente a notificação
+        window.closeNotification = function() {
+            const notifDiv = document.getElementById('notificationPopup');
+            if (notifDiv) notifDiv.classList.add('hidden');
+            if (notifTimeout) clearTimeout(notifTimeout);
+            isNotificationVisible = false;
+        };
+
+        // Iniciar notificações após 3 segundos
+        setTimeout(showRandomNotification, 3000);
+
+        // Carrossel de reviews (scroll por botões e swipe nativo)
+        const reviewsContainer = document.getElementById('reviewsContainer');
+        if (reviewsContainer) {
+            // Preencher reviews dinamicamente
+            reviewsData.forEach(review => {
+                const stars = '★'.repeat(Math.floor(review.rating)) + (review.rating % 1 ? '½' : '') + '☆'.repeat(5 - Math.ceil(review.rating));
+                const card = document.createElement('div');
+                card.className = 'review-card bg-gray-50 rounded-2xl p-6 shadow-sm flex-shrink-0';
+                card.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${review.avatar}" class="w-12 h-12 rounded-full object-cover" alt="${review.name}">
+                        <div>
+                            <p class="font-semibold text-gray-800">${review.name}</p>
+                            <p class="text-xs text-gray-400">${review.location} · ${review.date}</p>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-yellow-400 text-sm">${stars}</div>
+                    <p class="text-gray-600 text-sm mt-3 italic">“${review.text}”</p>
+                `;
+                reviewsContainer.appendChild(card);
+            });
+
+            // Scroll com botões
+            const prevBtn = document.getElementById('prevReview');
+            const nextBtn = document.getElementById('nextReview');
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    reviewsContainer.scrollBy({ left: -280, behavior: 'smooth' });
+                });
+                nextBtn.addEventListener('click', () => {
+                    reviewsContainer.scrollBy({ left: 280, behavior: 'smooth' });
+                });
+            }
+        }
+
+        // ======================== MODAL E DADOS FLASK (código existente) ==========================
         window.packsData = {{ packs | tojson }};
         window.whatsappNumber = '{{ whatsapp_number }}';
 
