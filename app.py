@@ -23,11 +23,11 @@ packs = [
         "long_description": "As Maldivas são um arquipélago paradisíaco no oceano Índico, conhecido pelas suas águas cristalinas, recifes de coral e luxuosos resorts overwater. É o destino ideal para quem procura privacidade, romance e contacto direto com a natureza marinha.",
         "included": ["Voo directo de Lisboa", "Transfer privado (ida e volta)", "Hotel 5* tudo incluído", "Experiência de mergulho com snorkeling", "Sunset cruise com champanhe"],
         "common_tours": ["Snorkeling com tartarugas", "Passeio de barco com fundo de vidro", "Visita a ilha local", "Pesca noturna", "Safari ao pôr do sol com golfinhos"],
-        "price": "1.890€",
+        "price": "2.090€",
         "old_price": "2.490€",
         "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg",
         "badge": "Oferta relâmpago",
-        "dates": "10 Mai - 17 Mai",
+        "dates": "Mai – Nov 2026",
         "from": "Lisboa"
     },
     {
@@ -38,12 +38,12 @@ packs = [
         "long_description": "Bali é a ilha dos deuses, com florestas tropicais, arrozais em terraços, templos ancestrais e uma cultura única. Perfeita para quem busca espiritualidade, aventura e relaxamento.",
         "included": ["Voo com escala em Doha", "Transfer privado", "Hotel boutique 4* com pequeno-almoço", "Tour cultural com guia local", "Dia de spa tradicional"],
         "common_tours": ["Templo Tanah Lot ao pôr do sol", "Monkey Forest em Ubud", "Terraços de arroz Tegallalang", "Monte Batur sunrise trekking", "Mergulho em Amed"],
-        "price": "1.490€",
-        "old_price": "1.890€",
+        "price": "1.690€",
+        "old_price": "1.990€",
         "image": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg",
-        "badge": "-21%",
-        "dates": "20 Jun - 30 Jun",
-        "from": "Porto"
+        "badge": "-15%",
+        "dates": "Mai – Nov 2026",
+        "from": "Lisboa ou Porto"
     },
     {
         "id": 3,
@@ -53,11 +53,11 @@ packs = [
         "long_description": "A Costa Rica é um paraíso de biodiversidade, com florestas tropicais, vulcões, praias do Pacífico e do Caribe. Ideal para ecoturismo e aventura.",
         "included": ["Voo com conexão", "Transfer privado", "Eco‑lodge 3* com pequeno-almoço", "Zipline em Monteverde", "Visita a parque nacional"],
         "common_tours": ["Caminhada na floresta nublada de Monteverde", "Arenal Volcano trek", "Canopy tour", "Observação de tartarugas marinhas", "Rafting no Rio Pacuare"],
-        "price": "1.690€",
-        "old_price": None,
+        "price": "1.590€",
+        "old_price": "1.890€",
         "image": "https://images.pexels.com/photos/12832297/pexels-photo-12832297.jpeg",
         "badge": "Últimas vagas",
-        "dates": "5 Jul - 13 Jul",
+        "dates": "Mai – Nov 2026",
         "from": "Lisboa"
     },
     {
@@ -68,12 +68,12 @@ packs = [
         "long_description": "Santorini é a jóia do Egeu, famosa pelas suas casas brancas com cúpulas azuis, pores do sol sobre a caldeira e vinhedos vulcânicos. É o destino romântico por excelência.",
         "included": ["Voo charter para Santorini", "Transfer privado", "Caverna tradicional em Oia com pequeno-almoço", "Jantar romântico com vista", "Catamarã com snorkeling"],
         "common_tours": ["Passeio de barco à volta da caldeira", "Visita a Akrotiri (Pompeia do Egeu)", "Prova de vinhos em vinícola local", "Caminhada de Fira para Oia", "Excursão a Nea Kameni (vulcão)"],
-        "price": "1.190€",
-        "old_price": "1.590€",
+        "price": "990€",
+        "old_price": "1.290€",
         "image": "https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg",
-        "badge": "-25%",
-        "dates": "15 Set - 20 Set",
-        "from": "Faro"
+        "badge": "-23%",
+        "dates": "Mai – Out 2026",
+        "from": "Lisboa, Porto ou Faro"
     },
     {
         "id": 5,
@@ -83,11 +83,11 @@ packs = [
         "long_description": "A Riviera Maya e Cancún oferecem o melhor do Caribe mexicano: praias de areia branca, águas turquesa, uma rica herança maia e cenotes impressionantes. É o destino perfeito para quem quer combinar descanso, aventura e cultura.",
         "included": ["Voo charter com bagagem", "Transfer privado ida e volta", "Hotel 5* tudo incluído", "Tour a Chichén Itzá com almoço", "Snorkeling em cenote sagrado"],
         "common_tours": ["Chichén Itzá e cenote Ik Kil", "Tulum e praia paradisíaca", "Coco Bongo (show noturno)", "Isla Mujeres com natação com golfinhos", "Snorkeling em Puerto Morelos"],
-        "price": "1.490€",
+        "price": "1.590€",
         "old_price": "1.990€",
         "image": "https://images.pexels.com/photos/16116487/pexels-photo-16116487.jpeg",
-        "badge": "-25%",
-        "dates": "1 Out - 8 Out",
+        "badge": "-20%",
+        "dates": "Mai – Nov 2026",
         "from": "Lisboa"
     }
 ]
