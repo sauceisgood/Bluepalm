@@ -100,7 +100,7 @@
     <div class="top-banner text-white text-sm py-2 px-4 text-center relative z-40">
         <div class="max-w-7xl mx-auto flex justify-center items-center gap-3 flex-wrap">
             <i class="fas fa-bullhorn text-white/80"></i>
-            <span id="bannerMessage" class="banner-text font-medium">🌴 Promoção relâmpago: -20% em Maldivas esta semana!</span>
+            <span id="bannerMessage" class="banner-text font-medium">🌴 Promoção relâmpago: -20% em Maldivas</span>
         </div>
     </div>
 
@@ -283,78 +283,76 @@
 
     <script>
         // ======================== DADOS ESTÁTICOS ==========================
-        // Lista de mensagens para o banner superior (carrossel)
-const bannerMessages = [
-    "🌴 Maldivas -20% esta semana",
-    "✈️ Bali 15% desconto",
-    "🏝️ Riviera Maya 7 noites 1490€",
-    "⏰ Santorini jantar grátis",
-    "🎒 Costa Rica zipline oferta",
-    "🔥 Cancún últimas vagas",
-    "💎 Maldivas resort c/ desconto",
-    "⭐ 4.98 · Mais de 500 avaliações",
-    "🎁 Leve upgrade grátis em Bali",
-    "🌟 Pacotes tudo incluído"
-];
+        // Lista de mensagens para o banner superior (carrossel) - VERSÃO COMPACTADA (UMA LINHA)
+        const bannerMessages = [
+            "🌴 Maldivas -20% esta semana",
+            "✈️ Bali 15% desconto",
+            "🏝️ Riviera Maya 7 noites 1490€",
+            "⏰ Santorini jantar grátis",
+            "🎒 Costa Rica zipline oferta",
+            "🔥 Cancún últimas vagas",
+            "💎 Maldivas resort c/ desconto",
+            "⭐ 4.98 · Mais de 500 avaliações",
+            "🎁 Leve upgrade grátis em Bali",
+            "🌟 Pacotes tudo incluído"
         ];
         let currentBannerIndex = 0;
 
-        // Lista de notificações (simulando ações de clientes)
+        // Lista de notificações (simulando ações de clientes) - 50 entradas
         const notifications = [
-    "João acabou de reservar Maldivas",
-    "Andreia enviou pedido de contacto",
-    "Miguel comprou pack para Costa Rica",
-    "Sofia e Tiago reservaram Santorini (lua de mel)",
-    "Carlos pediu informações sobre Riviera Maya",
-    "Patrícia acabou de garantir Bali com desconto",
-    "Rita e João reservaram Maldivas com upgrade",
-    "Felipe solicitou chamada sobre Pacotes",
-    "Mariana e Pedro fecharam pack para Cancún",
-    "Luís acabou de reservar Santorini para aniversário",
-    "Carla pediu proposta para grupo de 6 a Bali",
-    "Rodrigo e Inês garantiram Riviera Maya tudo incluído",
-    "Tânia enviou pedido de informações para Maldivas",
-    "André comprou pack romântico para Bali",
-    "Helena e Rui reservaram Costa Rica com zipline",
-    "Bruno solicitou disponibilidade para Santorini em julho",
-    "Sílvia acabou de reservar Riviera Maya com voo direto",
-    "Jorge pediu pack família para Maldivas",
-    "Marta e Diogo garantiram Bali com spa",
-    "Nuno quer saber mais sobre tours na Costa Rica",
-    "Isabel fechou Santorini com jantar romântico",
-    "Rafael e Ana reservaram Maldivas (lua de mel)",
-    "Vânia pediu desconto para grupo em Riviera Maya",
-    "Hugo acabou de comprar pack para Cancún",
-    "Adriana e Sérgio pediram info sobre voos para Bali",
-    "Tiago reservou Costa Rica para dezembro",
-    "Liliana garantiu Santorini com catamarã",
-    "Fábio e Sofia fecharam Maldivas com resort overwater",
-    "Cristina solicitou chamada sobre seguro de viagem",
-    "José e Maria pediram pack família para Riviera Maya",
-    "Lara acabou de reservar Bali com upgrade quarto",
-    "Alexandre quer informações sobre atividades na Costa Rica",
-    "Eduarda e Nuno garantiram Santorini com traslado",
-    "Ricardo pediu cotação para Maldivas em grupo",
-    "Margarida reservou Riviera Maya para lua de mel",
-    "Filipe e Patrícia fecharam Cancún com tudo incluído",
-    "Sara pediu pack aventura para Costa Rica",
-    "Gonçalo acabou de reservar Bali com voo executivo",
-    "Teresa e Rui solicitaram informações sobre Maldivas",
-    "António comprou Santorini com vista caldeira",
-    "Joana e Miguel garantiram Riviera Maya com snorkeling",
-    "Diana pediu pack romântico para Cancún",
-    "Luís e Carla acabam de reservar Costa Rica com tours",
-    "Vera solicitou chamada sobre Pacotes todo incluído",
-    "Ricardo e Filipa fecharam Maldivas com transfer VIP",
-    "Mário pediu informações sobre voos diretos para Bali",
-    "Sónia e Paulo garantiram Santorini com jantar privado",
-    "Fernanda acabou de reservar Riviera Maya para família",
-    "Rogério e Ana pediram pack lua de mel para Cancún",
-    "Isabel e José compraram Costa Rica com eco‑lodge"
-];
+            "João acabou de reservar Maldivas",
+            "Andreia enviou pedido de contacto",
+            "Miguel comprou pack para Costa Rica",
+            "Sofia e Tiago reservaram Santorini (lua de mel)",
+            "Carlos pediu informações sobre Riviera Maya",
+            "Patrícia acabou de garantir Bali com desconto",
+            "Rita e João reservaram Maldivas com upgrade",
+            "Felipe solicitou chamada sobre Pacotes",
+            "Mariana e Pedro fecharam pack para Cancún",
+            "Luís acabou de reservar Santorini para aniversário",
+            "Carla pediu proposta para grupo de 6 a Bali",
+            "Rodrigo e Inês garantiram Riviera Maya tudo incluído",
+            "Tânia enviou pedido de informações para Maldivas",
+            "André comprou pack romântico para Bali",
+            "Helena e Rui reservaram Costa Rica com zipline",
+            "Bruno solicitou disponibilidade para Santorini em julho",
+            "Sílvia acabou de reservar Riviera Maya com voo direto",
+            "Jorge pediu pack família para Maldivas",
+            "Marta e Diogo garantiram Bali com spa",
+            "Nuno quer saber mais sobre tours na Costa Rica",
+            "Isabel fechou Santorini com jantar romântico",
+            "Rafael e Ana reservaram Maldivas (lua de mel)",
+            "Vânia pediu desconto para grupo em Riviera Maya",
+            "Hugo acabou de comprar pack para Cancún",
+            "Adriana e Sérgio pediram info sobre voos para Bali",
+            "Tiago reservou Costa Rica para dezembro",
+            "Liliana garantiu Santorini com catamarã",
+            "Fábio e Sofia fecharam Maldivas com resort overwater",
+            "Cristina solicitou chamada sobre seguro de viagem",
+            "José e Maria pediram pack família para Riviera Maya",
+            "Lara acabou de reservar Bali com upgrade quarto",
+            "Alexandre quer informações sobre atividades na Costa Rica",
+            "Eduarda e Nuno garantiram Santorini com traslado",
+            "Ricardo pediu cotação para Maldivas em grupo",
+            "Margarida reservou Riviera Maya para lua de mel",
+            "Filipe e Patrícia fecharam Cancún com tudo incluído",
+            "Sara pediu pack aventura para Costa Rica",
+            "Gonçalo acabou de reservar Bali com voo executivo",
+            "Teresa e Rui solicitaram informações sobre Maldivas",
+            "António comprou Santorini com vista caldeira",
+            "Joana e Miguel garantiram Riviera Maya com snorkeling",
+            "Diana pediu pack romântico para Cancún",
+            "Luís e Carla acabam de reservar Costa Rica com tours",
+            "Vera solicitou chamada sobre Pacotes todo incluído",
+            "Ricardo e Filipa fecharam Maldivas com transfer VIP",
+            "Mário pediu informações sobre voos diretos para Bali",
+            "Sónia e Paulo garantiram Santorini com jantar privado",
+            "Fernanda acabou de reservar Riviera Maya para família",
+            "Rogério e Ana pediram pack lua de mel para Cancún",
+            "Isabel e José compraram Costa Rica com eco‑lodge"
         ];
 
-        // Dados das reviews
+        // Dados das reviews (inalterados)
         const reviewsData = [
             { name: "Joana Silva", location: "Lisboa", rating: 5, date: "15 Mar 2026", text: "Experiência incrível! As Maldivas superaram todas as expectativas. Organização impecável da Blue Palm. Recomendo a todos!", avatar: "https://randomuser.me/api/portraits/women/1.jpg" },
             { name: "Ricardo Costa", location: "Porto", rating: 5, date: "2 Abr 2026", text: "Bali é mágica e a equipa da Blue Palm tratou de tudo. Transferes, hotel, tours... só me preocupei em aproveitar. Voltarei a viajar convosco!", avatar: "https://randomuser.me/api/portraits/men/2.jpg" },
@@ -373,14 +371,14 @@ const bannerMessages = [
             const bannerSpan = document.getElementById('bannerMessage');
             if (bannerSpan) {
                 bannerSpan.classList.remove('banner-text');
-                void bannerSpan.offsetWidth; // força reflow
+                void bannerSpan.offsetWidth;
                 bannerSpan.textContent = bannerMessages[currentBannerIndex];
                 bannerSpan.classList.add('banner-text');
             }
         }
         setInterval(rotateBanner, 6000);
 
-        // Notificações aleatórias randómicas (a cada 5 a 15 segundos)
+        // Notificações aleatórias (a cada 5 a 15 segundos)
         function showRandomNotification() {
             const randomIndex = Math.floor(Math.random() * notifications.length);
             const notifText = notifications[randomIndex];
@@ -390,32 +388,26 @@ const bannerMessages = [
                 textSpan.textContent = notifText;
                 notifDiv.classList.remove('hidden');
                 isNotificationVisible = true;
-                // Esconder após 5 segundos
                 if (notifTimeout) clearTimeout(notifTimeout);
                 notifTimeout = setTimeout(() => {
                     notifDiv.classList.add('hidden');
                     isNotificationVisible = false;
                 }, 5000);
             }
-            // Agendar a próxima notificação com tempo aleatório entre 5 e 15 segundos
             const nextDelay = Math.random() * (15000 - 5000) + 5000;
             setTimeout(showRandomNotification, nextDelay);
         }
-        // Função para fechar manualmente a notificação
         window.closeNotification = function() {
             const notifDiv = document.getElementById('notificationPopup');
             if (notifDiv) notifDiv.classList.add('hidden');
             if (notifTimeout) clearTimeout(notifTimeout);
             isNotificationVisible = false;
         };
-
-        // Iniciar notificações após 3 segundos
         setTimeout(showRandomNotification, 3000);
 
-        // Carrossel de reviews (scroll por botões e swipe nativo)
+        // Carrossel de reviews
         const reviewsContainer = document.getElementById('reviewsContainer');
         if (reviewsContainer) {
-            // Preencher reviews dinamicamente
             reviewsData.forEach(review => {
                 const stars = '★'.repeat(Math.floor(review.rating)) + (review.rating % 1 ? '½' : '') + '☆'.repeat(5 - Math.ceil(review.rating));
                 const card = document.createElement('div');
@@ -433,66 +425,42 @@ const bannerMessages = [
                 `;
                 reviewsContainer.appendChild(card);
             });
-
-            // Scroll com botões
             const prevBtn = document.getElementById('prevReview');
             const nextBtn = document.getElementById('nextReview');
             if (prevBtn && nextBtn) {
-                prevBtn.addEventListener('click', () => {
-                    reviewsContainer.scrollBy({ left: -280, behavior: 'smooth' });
-                });
-                nextBtn.addEventListener('click', () => {
-                    reviewsContainer.scrollBy({ left: 280, behavior: 'smooth' });
-                });
+                prevBtn.addEventListener('click', () => reviewsContainer.scrollBy({ left: -280, behavior: 'smooth' }));
+                nextBtn.addEventListener('click', () => reviewsContainer.scrollBy({ left: 280, behavior: 'smooth' }));
             }
         }
 
-        // ======================== MODAL E DADOS FLASK (código existente) ==========================
+        // ======================== MODAL E DADOS FLASK ==========================
         window.packsData = {{ packs | tojson }};
         window.whatsappNumber = '{{ whatsapp_number }}';
 
         function openModal(packId) {
             const pack = window.packsData.find(p => p.id === packId);
             if (!pack) return;
-
             const includedHtml = pack.included && pack.included.length
                 ? pack.included.map(item => `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>${escapeHtml(item)}</span></li>`).join('')
                 : '<li>Não especificado</li>';
-
             const toursHtml = pack.common_tours && pack.common_tours.length
                 ? pack.common_tours.map(tour => `<li class="flex items-start gap-2"><i class="fas fa-umbrella-beach text-orange-500 mt-0.5"></i><span>${escapeHtml(tour)}</span></li>`).join('')
                 : '<li>Informação disponível brevemente</li>';
-
             const desc = pack.long_description ? escapeHtml(pack.long_description) : escapeHtml(pack.description);
-
             const contentHtml = `
                 <p class="text-gray-700">${desc}</p>
-                <div>
-                    <h4 class="font-semibold text-gray-900">✈️ O que está incluído:</h4>
-                    <ul class="mt-2 space-y-1">${includedHtml}</ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-900">🏝️ Tours mais comuns:</h4>
-                    <ul class="mt-2 space-y-1">${toursHtml}</ul>
-                </div>
+                <div><h4 class="font-semibold text-gray-900">✈️ O que está incluído:</h4><ul class="mt-2 space-y-1">${includedHtml}</ul></div>
+                <div><h4 class="font-semibold text-gray-900">🏝️ Tours mais comuns:</h4><ul class="mt-2 space-y-1">${toursHtml}</ul></div>
             `;
-
             document.getElementById('modal-title').innerText = pack.title;
             document.getElementById('modal-content').innerHTML = contentHtml;
-
             const waMessage = `Olá! Estou interessado no pack *${pack.title}* (${pack.dates} a partir de ${pack.from}). Gostaria de saber mais sobre as experiências incluídas.`;
             const waUrl = `https://wa.me/${window.whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
             document.getElementById('modal-wa-link').href = waUrl;
-
             document.getElementById('destinationModal').classList.remove('hidden');
         }
-
-        function closeModal() {
-            document.getElementById('destinationModal').classList.add('hidden');
-        }
-
+        function closeModal() { document.getElementById('destinationModal').classList.add('hidden'); }
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -502,7 +470,6 @@ const bannerMessages = [
                 return m;
             });
         }
-
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 10) header.classList.add('shadow-md');
