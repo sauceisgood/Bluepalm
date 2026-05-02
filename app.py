@@ -100,32 +100,44 @@ packs = [
 ]
 
 # -----------------------------
-# Função auxiliar para desenhar parágrafos com quebra automática
+# Função auxiliar para desenhar parágrafos com quebra automática e limite de linhas
 # -----------------------------
-def draw_paragraph(c, text, x, y, max_width=450, font_name='Helvetica', font_size=10, leading=14):
+def draw_paragraph(c, text, x, y, max_width=450, font_name='Helvetica', font_size=10, leading=13, max_lines=6):
     """
     Desenha um parágrafo com quebra automática de linhas.
-    Retorna o novo y após o último texto desenhado.
+    Se ultrapassar max_lines, trunca e adiciona "..."
+    Retorna (novo_y, truncado)
     """
     if not text or text == '—':
+        c.setFont(font_name, font_size)
         c.drawString(x, y, '—')
-        return y - leading
+        return y - leading, False
 
     c.setFont(font_name, font_size)
-    # Divide por quebras de linha manuais
-    paragraphs = text.split('\n')
-    current_y = y
-    for para in paragraphs:
-        if not para.strip():
-            current_y -= leading
+    # Divide por quebras de linha manuais e depois por comprimento
+    raw_lines = text.split('\n')
+    final_lines = []
+    for line in raw_lines:
+        if not line.strip():
+            final_lines.append('')
             continue
-        # Estima número máximo de caracteres por linha (baseado na largura)
         max_chars = int(max_width / (font_size * 0.55))
-        wrapped = textwrap.wrap(para, width=max_chars)
-        for line in wrapped:
-            c.drawString(x, current_y, line)
-            current_y -= leading
-    return current_y
+        wrapped = textwrap.wrap(line, width=max_chars)
+        if not wrapped:
+            wrapped = [line[:max_chars]]
+        final_lines.extend(wrapped)
+
+    truncated = False
+    if len(final_lines) > max_lines:
+        final_lines = final_lines[:max_lines]
+        final_lines[-1] = final_lines[-1] + '...'
+        truncated = True
+
+    current_y = y
+    for line in final_lines:
+        c.drawString(x, current_y, line)
+        current_y -= leading
+    return current_y, truncated
 
 # -----------------------------
 # Rota principal (landing page)
@@ -172,7 +184,7 @@ def proposta_form():
     return render_template('proposta.html')
 
 # -----------------------------
-# Rota para gerar o PDF da proposta (usando ReportLab)
+# Rota para gerar o PDF da proposta (versão com truncagem e controle de página)
 # -----------------------------
 @app.route('/gerar_pdf', methods=['POST'])
 def gerar_pdf():
@@ -197,7 +209,7 @@ def gerar_pdf():
     azul_escuro = HexColor("#0F2A4A")
     laranja = HexColor("#F97316")
 
-    # Logo
+    # --- Logo ---
     logo_path = os.path.join('static', 'logo.png')
     if os.path.exists(logo_path):
         c.drawImage(logo_path, 50, height - 80, width=60, height=60, mask='auto')
@@ -211,7 +223,7 @@ def gerar_pdf():
         except:
             pass
 
-    # Título
+    # --- Cabeçalho ---
     c.setFont("Helvetica-Bold", 16)
     c.setFillColor(azul_escuro)
     c.drawString(130, height - 60, "Blue Palm Traveling")
@@ -219,12 +231,13 @@ def gerar_pdf():
     c.setFillColor(HexColor("#4B5563"))
     c.drawString(130, height - 80, "Proposta de Viagem Personalizada")
 
-    # Linha laranja
     c.setStrokeColor(laranja)
     c.setLineWidth(2)
     c.line(50, height - 95, width - 50, height - 95)
 
     y = height - 130
+
+    # --- Dados do Cliente ---
     c.setFont("Helvetica-Bold", 12)
     c.setFillColor(azul_escuro)
     c.drawString(50, y, "Dados do Cliente")
@@ -239,7 +252,7 @@ def gerar_pdf():
     y -= 18
     c.drawString(50, y, f"Nº de pessoas: {num_pessoas}")
 
-    # Valor total em destaque
+    # --- Valor total ---
     if valor_total:
         y -= 30
         c.setFont("Helvetica-Bold", 14)
@@ -251,15 +264,15 @@ def gerar_pdf():
         c.drawString(50, y, "Oferta válida por 7 dias. Sujeito a disponibilidade.")
     y -= 25
 
-    # Voo
+    # --- Voo (máx 4 linhas) ---
     c.setFont("Helvetica-Bold", 12)
     c.setFillColor(azul_escuro)
     c.drawString(50, y, "✈️ Voo")
     y -= 18
-    y = draw_paragraph(c, voo, 50, y, max_width=500, font_size=10)
+    y, _ = draw_paragraph(c, voo, 50, y, max_width=500, font_size=10, max_lines=4)
 
-    # Alojamento
-    y -= 15
+    # --- Alojamento ---
+    y -= 20
     c.setFont("Helvetica-Bold", 12)
     c.drawString(50, y, "🏨 Alojamento")
     y -= 18
@@ -267,32 +280,44 @@ def gerar_pdf():
     c.drawString(50, y, f"Hotel: {hotel}")
     y -= 16
     c.drawString(50, y, f"Regime: {regime}")
-    y -= 8
+    y -= 10
 
-    # Transfer
-    y -= 25
+    # --- Transfer (máx 3 linhas) ---
+    y -= 20
     c.setFont("Helvetica-Bold", 12)
     c.drawString(50, y, "🚗 Transfer")
     y -= 18
-    y = draw_paragraph(c, transfer, 50, y, max_width=500)
+    y, _ = draw_paragraph(c, transfer, 50, y, max_width=500, font_size=10, max_lines=3)
 
-    # Seguro
-    y -= 15
+    # --- Seguro (máx 5 linhas; se truncado, adiciona nota) ---
+    y -= 20
     c.setFont("Helvetica-Bold", 12)
     c.drawString(50, y, "🛡️ Seguro de Viagem")
     y -= 18
-    y = draw_paragraph(c, seguro, 50, y, max_width=500)
+    y, truncado = draw_paragraph(c, seguro, 50, y, max_width=500, font_size=10, max_lines=5)
+    if truncado:
+        c.setFont("Helvetica-Oblique", 8)
+        c.setFillColor(laranja)
+        c.drawString(50, y - 5, "→ Mais detalhes disponíveis mediante pedido")
+        y -= 15
 
-    # Excursões
-    y -= 15
+    # --- Excursões (máx 5 linhas) ---
+    y -= 20
     c.setFont("Helvetica-Bold", 12)
     c.drawString(50, y, "🏝️ Excursões / Actividades")
     y -= 18
-    y = draw_paragraph(c, excursoes, 50, y, max_width=500)
+    y, _ = draw_paragraph(c, excursoes, 50, y, max_width=500, font_size=10, max_lines=5)
 
-    # Rodapé (garantir mínimo de espaço)
-    y = min(y, 70)  # se ultrapassar, mantém pelo menos 70
-    y = max(y, 70)
+    # --- Garantir espaço para o rodapé (mínimo 80 pts da margem inferior) ---
+    if y < 80:
+        c.showPage()
+        y = height - 50
+        c.setFont("Helvetica", 9)
+        c.setFillColor(HexColor("#4B5563"))
+        c.drawString(50, y, "Continuação da proposta - Blue Palm Traveling")
+        y -= 20
+
+    # --- Rodapé ---
     c.setFont("Helvetica-Oblique", 9)
     c.setFillColor(HexColor("#6B7280"))
     c.drawString(50, y, "Blue Palm Traveling · Viagens sem complicações · @bluepalmtraveling")
