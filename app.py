@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, make_response, url_for
 from flask_sitemapper import Sitemapper
+from weasyprint import HTML
 import os
 
 app = Flask(__name__)
@@ -100,7 +101,6 @@ packs = [
 @sitemapper.include()
 @app.route('/')
 def index():
-    # Calcular desconto percentual para cada pack
     for pack in packs:
         if pack.get("old_price") and pack["old_price"]:
             old_str = pack["old_price"].replace("€", "").replace(".", "").replace(",", ".").strip()
@@ -132,8 +132,27 @@ def sitemap():
     return sitemapper.generate()
 
 # -----------------------------
-# (Opcional) Rota para blog no futuro - adicione aqui
+# Rota do formulário de proposta
 # -----------------------------
+@app.route('/proposta')
+def proposta_form():
+    return render_template('proposta.html')
 
+# -----------------------------
+# Rota para gerar o PDF da proposta
+# -----------------------------
+@app.route('/gerar_pdf', methods=['POST'])
+def gerar_pdf():
+    dados = request.form.to_dict()
+    # Adiciona a URL absoluta do logo para o PDF
+    logo_url = url_for('static', filename='logo.png', _external=True)
+    rendered = render_template('proposta_pdf.html', dados=dados, logo_url=logo_url)
+    pdf = HTML(string=rendered).write_pdf()
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=proposta_bluepalm.pdf'
+    return response
+
+# -----------------------------
 if __name__ == '__main__':
     app.run(debug=True)
