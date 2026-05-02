@@ -284,25 +284,74 @@
     <script>
         // ======================== DADOS ESTÁTICOS ==========================
         // Lista de mensagens para o banner superior (carrossel)
-        const bannerMessages = [
-            "🌴 Promoção relâmpago: -20% em Maldivas esta semana!",
-            "✈️ Últimas vagas para Bali com 15% de desconto!",
-            "🏝️ Riviera Maya: 7 noites tudo incluído por apenas 1.490€!",
-            "⏰ Santorini: Reserve até domingo e ganhe jantar romântico grátis!",
-            "🎒 Costa Rica: Leve um tour de zipline oferta na compra do pack!"
+const bannerMessages = [
+    "🌴 Maldivas -20% esta semana",
+    "✈️ Bali 15% desconto",
+    "🏝️ Riviera Maya 7 noites 1490€",
+    "⏰ Santorini jantar grátis",
+    "🎒 Costa Rica zipline oferta",
+    "🔥 Cancún últimas vagas",
+    "💎 Maldivas resort c/ desconto",
+    "⭐ 4.98 · Mais de 500 avaliações",
+    "🎁 Leve upgrade grátis em Bali",
+    "🌟 Pacotes tudo incluído"
+];
         ];
         let currentBannerIndex = 0;
 
         // Lista de notificações (simulando ações de clientes)
         const notifications = [
-            "João acabou de reservar Maldivas",
-            "Andreia enviou pedido de contacto",
-            "Miguel comprou pack para Costa Rica",
-            "Sofia e Tiago reservaram Santorini (lua de mel)",
-            "Carlos pediu informações sobre Riviera Maya",
-            "Patrícia acabou de garantir Bali com desconto",
-            "Rita e João reservaram Maldivas com upgrade",
-            "Felipe solicitou chamada sobre Pacotes"
+    "João acabou de reservar Maldivas",
+    "Andreia enviou pedido de contacto",
+    "Miguel comprou pack para Costa Rica",
+    "Sofia e Tiago reservaram Santorini (lua de mel)",
+    "Carlos pediu informações sobre Riviera Maya",
+    "Patrícia acabou de garantir Bali com desconto",
+    "Rita e João reservaram Maldivas com upgrade",
+    "Felipe solicitou chamada sobre Pacotes",
+    "Mariana e Pedro fecharam pack para Cancún",
+    "Luís acabou de reservar Santorini para aniversário",
+    "Carla pediu proposta para grupo de 6 a Bali",
+    "Rodrigo e Inês garantiram Riviera Maya tudo incluído",
+    "Tânia enviou pedido de informações para Maldivas",
+    "André comprou pack romântico para Bali",
+    "Helena e Rui reservaram Costa Rica com zipline",
+    "Bruno solicitou disponibilidade para Santorini em julho",
+    "Sílvia acabou de reservar Riviera Maya com voo direto",
+    "Jorge pediu pack família para Maldivas",
+    "Marta e Diogo garantiram Bali com spa",
+    "Nuno quer saber mais sobre tours na Costa Rica",
+    "Isabel fechou Santorini com jantar romântico",
+    "Rafael e Ana reservaram Maldivas (lua de mel)",
+    "Vânia pediu desconto para grupo em Riviera Maya",
+    "Hugo acabou de comprar pack para Cancún",
+    "Adriana e Sérgio pediram info sobre voos para Bali",
+    "Tiago reservou Costa Rica para dezembro",
+    "Liliana garantiu Santorini com catamarã",
+    "Fábio e Sofia fecharam Maldivas com resort overwater",
+    "Cristina solicitou chamada sobre seguro de viagem",
+    "José e Maria pediram pack família para Riviera Maya",
+    "Lara acabou de reservar Bali com upgrade quarto",
+    "Alexandre quer informações sobre atividades na Costa Rica",
+    "Eduarda e Nuno garantiram Santorini com traslado",
+    "Ricardo pediu cotação para Maldivas em grupo",
+    "Margarida reservou Riviera Maya para lua de mel",
+    "Filipe e Patrícia fecharam Cancún com tudo incluído",
+    "Sara pediu pack aventura para Costa Rica",
+    "Gonçalo acabou de reservar Bali com voo executivo",
+    "Teresa e Rui solicitaram informações sobre Maldivas",
+    "António comprou Santorini com vista caldeira",
+    "Joana e Miguel garantiram Riviera Maya com snorkeling",
+    "Diana pediu pack romântico para Cancún",
+    "Luís e Carla acabam de reservar Costa Rica com tours",
+    "Vera solicitou chamada sobre Pacotes todo incluído",
+    "Ricardo e Filipa fecharam Maldivas com transfer VIP",
+    "Mário pediu informações sobre voos diretos para Bali",
+    "Sónia e Paulo garantiram Santorini com jantar privado",
+    "Fernanda acabou de reservar Riviera Maya para família",
+    "Rogério e Ana pediram pack lua de mel para Cancún",
+    "Isabel e José compraram Costa Rica com eco‑lodge"
+];
         ];
 
         // Dados das reviews
