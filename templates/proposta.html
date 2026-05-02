@@ -62,11 +62,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
                         <div>
                             <label class="block font-semibold text-gray-700">Data Ida *</label>
-                            <input type="date" name="data_ida" required class="w-full border border-gray-300 rounded-xl p-2.5">
+                            <input type="date" name="data_ida" id="data_ida" required class="w-full border border-gray-300 rounded-xl p-2.5">
                         </div>
                         <div>
                             <label class="block font-semibold text-gray-700">Data Volta *</label>
-                            <input type="date" name="data_volta" required class="w-full border border-gray-300 rounded-xl p-2.5">
+                            <input type="date" name="data_volta" id="data_volta" required class="w-full border border-gray-300 rounded-xl p-2.5">
                         </div>
                         <div>
                             <label class="block font-semibold text-gray-700">👥 Nº de pessoas</label>
@@ -108,8 +108,9 @@
                     </div>
 
                     <div class="mb-5">
-                        <label class="block font-semibold text-gray-700">🛡️ Seguro de Viagem (seguradora e coberturas)</label>
-                        <textarea name="seguro" rows="2" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Ex: Seguro Mundo, cobertura médica 100k€, cancelamento..."></textarea>
+                        <label class="block font-semibold text-gray-700">🛡️ Seguro de Viagem (resuma as coberturas principais)</label>
+                        <textarea name="seguro" rows="2" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Ex: Seguro Mundo: cobertura médica 1M€, cancelamento, bagagem (máx 3 linhas)"></textarea>
+                        <p class="text-xs text-gray-400 mt-1">Indique apenas as coberturas mais importantes para evitar cortes no PDF.</p>
                     </div>
 
                     <div class="mb-6">
@@ -131,5 +132,55 @@
             <p>© 2026 Blue Palm Traveling · Viagens sem complicações</p>
         </div>
     </footer>
+
+    <script>
+        // === VALIDAÇÃO E AJUSTE AUTOMÁTICO DAS DATAS ===
+        const inputDataIda = document.getElementById('data_ida');
+        const inputDataVolta = document.getElementById('data_volta');
+
+        // Função auxiliar: soma um dia a uma data no formato YYYY-MM-DD
+        function addOneDay(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            date.setDate(date.getDate() + 1);
+            return date.toISOString().split('T')[0];
+        }
+
+        // Função para garantir que data_volta >= data_ida
+        function ajustarDataVolta() {
+            const ida = inputDataIda.value;
+            const volta = inputDataVolta.value;
+            if (!ida) return;
+
+            if (!volta || volta < ida) {
+                // Se volta não existe ou é anterior a ida, define como dia seguinte à ida
+                const novaVolta = addOneDay(ida);
+                inputDataVolta.value = novaVolta;
+            }
+        }
+
+        // Quando a data de ida mudar:
+        //  - Se a data de volta estiver vazia ou for anterior, define para o dia seguinte
+        inputDataIda.addEventListener('change', function() {
+            ajustarDataVolta();
+        });
+
+        // Quando a data de volta mudar manualmente:
+        //  - Verifica se é anterior à ida; se sim, mostra alerta e reajusta para dia seguinte
+        inputDataVolta.addEventListener('change', function() {
+            const ida = inputDataIda.value;
+            const volta = inputDataVolta.value;
+            if (ida && volta && volta < ida) {
+                alert('A data de volta não pode ser anterior à data de ida. Vamos ajustar para o dia seguinte.');
+                const novaVolta = addOneDay(ida);
+                inputDataVolta.value = novaVolta;
+            }
+        });
+
+        // No carregamento da página, se já houver uma data de ida predefinida (ex: do browser), ajusta
+        if (inputDataIda.value) {
+            ajustarDataVolta();
+        }
+    </script>
 </body>
 </html>
