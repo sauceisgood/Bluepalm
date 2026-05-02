@@ -6,87 +6,42 @@
     <title>Blue Palm Traveling · Criar Proposta</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>body { font-family: 'Inter', sans-serif; background: #f3f4f6; }</style>
 </head>
-<body class="bg-gray-100 p-4 md:p-8">
+<body class="p-4 md:p-8">
 
 <div class="max-w-4xl mx-auto">
-    <!-- Header com logo -->
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
         <div class="bg-gradient-to-r from-[#0F2A4A] to-[#1d4e6e] px-6 py-4 flex items-center gap-3">
             <img src="{{ url_for('static', filename='logo.png') }}" class="h-12 w-auto bg-white rounded-full p-1" alt="Blue Palm">
             <span class="text-2xl font-bold text-white">Blue Palm Traveling</span>
         </div>
-
         <div class="p-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">✈️ Criar Proposta de Viagem</h1>
-            <p class="text-gray-500 mb-6">Preencha os detalhes abaixo. O PDF será gerado automaticamente.</p>
+            <h1 class="text-3xl font-bold text-gray-800">✈️ Criar Proposta de Viagem</h1>
+            <p class="text-gray-500 mb-6">Preencha os campos abaixo. O PDF será gerado automaticamente pelo servidor.</p>
 
             <form action="/gerar_pdf" method="POST" target="_blank">
-                <!-- Dados do Cliente -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                    <div>
-                        <label class="block font-semibold text-gray-700">Nome do Cliente *</label>
-                        <input type="text" name="cliente" required class="w-full border border-gray-300 rounded-xl p-2.5 focus:ring-2 focus:ring-orange-500">
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-700">Email *</label>
-                        <input type="email" name="email" required class="w-full border border-gray-300 rounded-xl p-2.5 focus:ring-2 focus:ring-orange-500">
-                    </div>
+                    <div><label class="block font-semibold">Nome do Cliente *</label><input type="text" name="cliente" required class="w-full border rounded-xl p-2.5"></div>
+                    <div><label class="block font-semibold">Email *</label><input type="email" name="email" required class="w-full border rounded-xl p-2.5"></div>
                 </div>
-
-                <!-- Datas -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                    <div>
-                        <label class="block font-semibold text-gray-700">Data de Ida *</label>
-                        <input type="date" name="data_ida" required class="w-full border border-gray-300 rounded-xl p-2.5">
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-700">Data de Volta *</label>
-                        <input type="date" name="data_volta" required class="w-full border border-gray-300 rounded-xl p-2.5">
-                    </div>
+                    <div><label class="block font-semibold">Data Ida *</label><input type="date" name="data_ida" required class="w-full border rounded-xl p-2.5"></div>
+                    <div><label class="block font-semibold">Data Volta *</label><input type="date" name="data_volta" required class="w-full border rounded-xl p-2.5"></div>
                 </div>
-
-                <!-- Voo -->
-                <div class="mb-5">
-                    <label class="block font-semibold text-gray-700">✈️ Voo (companhia, número, horários)</label>
-                    <textarea name="voo" rows="2" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Ex: TAP TP123, Lisboa -> Maldivas, 10h00"></textarea>
-                </div>
-
-                <!-- Hotel + Regime -->
+                <div class="mb-5"><label class="block font-semibold">✈️ Voo (companhia, nº, horários)</label><textarea name="voo" rows="2" class="w-full border rounded-xl p-2.5"></textarea></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                    <div>
-                        <label class="block font-semibold text-gray-700">🏨 Nome do Hotel</label>
-                        <input type="text" name="hotel" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Ex: Conrad Maldives">
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-700">🍽️ Regime Alimentar</label>
-                        <select name="regime" class="w-full border border-gray-300 rounded-xl p-2.5">
-                            <option>Somente pequeno-almoço</option>
-                            <option>Meia pensão</option>
-                            <option>Pensão completa</option>
+                    <div><label class="block font-semibold">🏨 Nome do Hotel</label><input type="text" name="hotel" class="w-full border rounded-xl p-2.5"></div>
+                    <div><label class="block font-semibold">🍽️ Regime Alimentar</label>
+                        <select name="regime" class="w-full border rounded-xl p-2.5">
+                            <option>Somente pequeno-almoço</option><option>Meia pensão</option><option>Pensão completa</option>
                             <option selected>All Inclusive</option>
                         </select>
                     </div>
                 </div>
-
-                <!-- Transfer -->
-                <div class="mb-5">
-                    <label class="block font-semibold text-gray-700">🚗 Transfer (tipo e descrição)</label>
-                    <input type="text" name="transfer" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Ex: Privado ida/volta ou Transfer partilhado">
-                </div>
-
-                <!-- Seguro -->
-                <div class="mb-5">
-                    <label class="block font-semibold text-gray-700">🛡️ Seguro de Viagem (seguradora e coberturas)</label>
-                    <textarea name="seguro" rows="2" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Ex: Seguro Mundo, cobertura médica 100k€, cancelamento..."></textarea>
-                </div>
-
-                <!-- Excursões / Actividades -->
-                <div class="mb-6">
-                    <label class="block font-semibold text-gray-700">🏝️ Excursões / Actividades (sugestões)</label>
-                    <textarea name="excursões" rows="3" class="w-full border border-gray-300 rounded-xl p-2.5" placeholder="Snorkeling, tour cultural, safari..."></textarea>
-                </div>
+                <div class="mb-5"><label class="block font-semibold">🚗 Transfer</label><input type="text" name="transfer" class="w-full border rounded-xl p-2.5"></div>
+                <div class="mb-5"><label class="block font-semibold">🛡️ Seguro de Viagem (seguradora e coberturas)</label><textarea name="seguro" rows="2" class="w-full border rounded-xl p-2.5"></textarea></div>
+                <div class="mb-6"><label class="block font-semibold">🏝️ Excursões / Actividades</label><textarea name="excursões" rows="3" class="w-full border rounded-xl p-2.5"></textarea></div>
 
                 <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
                     📄 Exportar Proposta em PDF
