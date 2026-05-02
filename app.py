@@ -184,7 +184,7 @@ def proposta_form():
     return render_template('proposta.html')
 
 # -----------------------------
-# Rota para gerar o PDF da proposta (versão com truncagem e controle de página)
+# Rota para gerar o PDF da proposta (versão SEM EMOJIS no PDF)
 # -----------------------------
 @app.route('/gerar_pdf', methods=['POST'])
 def gerar_pdf():
@@ -223,7 +223,7 @@ def gerar_pdf():
         except:
             pass
 
-    # --- Cabeçalho ---
+    # --- Cabeçalho (sem emojis) ---
     c.setFont("Helvetica-Bold", 16)
     c.setFillColor(azul_escuro)
     c.drawString(130, height - 60, "Blue Palm Traveling")
@@ -252,29 +252,29 @@ def gerar_pdf():
     y -= 18
     c.drawString(50, y, f"Nº de pessoas: {num_pessoas}")
 
-    # --- Valor total ---
+    # --- Valor total (sem emoji) ---
     if valor_total:
         y -= 30
         c.setFont("Helvetica-Bold", 14)
         c.setFillColor(laranja)
-        c.drawString(50, y, f"💰 Valor total da proposta: {valor_total} €")
+        c.drawString(50, y, f"Valor total da proposta: {valor_total} €")
         y -= 10
         c.setFont("Helvetica", 9)
         c.setFillColor(HexColor("#6B7280"))
         c.drawString(50, y, "Oferta válida por 7 dias. Sujeito a disponibilidade.")
     y -= 25
 
-    # --- Voo (máx 4 linhas) ---
+    # --- Voo (sem emoji) ---
     c.setFont("Helvetica-Bold", 12)
     c.setFillColor(azul_escuro)
-    c.drawString(50, y, "✈️ Voo")
+    c.drawString(50, y, "Voo")
     y -= 18
     y, _ = draw_paragraph(c, voo, 50, y, max_width=500, font_size=10, max_lines=4)
 
-    # --- Alojamento ---
+    # --- Alojamento (sem emoji) ---
     y -= 20
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, y, "🏨 Alojamento")
+    c.drawString(50, y, "Alojamento")
     y -= 18
     c.setFont("Helvetica", 10)
     c.drawString(50, y, f"Hotel: {hotel}")
@@ -282,17 +282,17 @@ def gerar_pdf():
     c.drawString(50, y, f"Regime: {regime}")
     y -= 10
 
-    # --- Transfer (máx 3 linhas) ---
+    # --- Transfer (sem emoji) ---
     y -= 20
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, y, "🚗 Transfer")
+    c.drawString(50, y, "Transfer")
     y -= 18
     y, _ = draw_paragraph(c, transfer, 50, y, max_width=500, font_size=10, max_lines=3)
 
-    # --- Seguro (máx 5 linhas; se truncado, adiciona nota) ---
+    # --- Seguro (sem emoji) ---
     y -= 20
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, y, "🛡️ Seguro de Viagem")
+    c.drawString(50, y, "Seguro de Viagem")
     y -= 18
     y, truncado = draw_paragraph(c, seguro, 50, y, max_width=500, font_size=10, max_lines=5)
     if truncado:
@@ -301,10 +301,10 @@ def gerar_pdf():
         c.drawString(50, y - 5, "→ Mais detalhes disponíveis mediante pedido")
         y -= 15
 
-    # --- Excursões (máx 5 linhas) ---
+    # --- Excursões (sem emoji) ---
     y -= 20
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, y, "🏝️ Excursões / Actividades")
+    c.drawString(50, y, "Excursões / Actividades")
     y -= 18
     y, _ = draw_paragraph(c, excursoes, 50, y, max_width=500, font_size=10, max_lines=5)
 
@@ -317,11 +317,11 @@ def gerar_pdf():
         c.drawString(50, y, "Continuação da proposta - Blue Palm Traveling")
         y -= 20
 
-    # --- Rodapé ---
+    # --- Rodapé (sem emojis) ---
     c.setFont("Helvetica-Oblique", 9)
     c.setFillColor(HexColor("#6B7280"))
     c.drawString(50, y, "Blue Palm Traveling · Viagens sem complicações · @bluepalmtraveling")
-    c.drawString(50, y - 15, "📞 +351 912 345 678  |  ✉️ ola@bluepalmtraveling.com")
+    c.drawString(50, y - 15, "Tel: +351 912 345 678  |  Email: ola@bluepalmtraveling.com")
 
     c.save()
     buffer.seek(0)
