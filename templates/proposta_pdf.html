@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Proposta Blue Palm Traveling</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid #F97316;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #0F2A4A;
+        }
+        .section {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 18px;
+            background: #f3f4f6;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #0F2A4A;
+        }
+        .row {
+            margin: 6px 0;
+        }
+        .label {
+            font-weight: 600;
+            display: inline-block;
+            width: 140px;
+        }
+        hr {
+            margin: 15px 0;
+            border: 0;
+            border-top: 1px solid #e5e7eb;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 15px;
+        }
+        .highlight {
+            color: #F97316;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ logo_url }}" class="logo" alt="Blue Palm Logo">
+        <div>
+            <h1>Blue Palm Traveling</h1>
+            <p style="margin:0;">Proposta de Viagem Personalizada</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">📋 Dados do Cliente</div>
+        <div class="row"><span class="label">Nome:</span> {{ dados.cliente }}</div>
+        <div class="row"><span class="label">Email:</span> {{ dados.email }}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">📅 Datas</div>
+        <div class="row"><span class="label">Ida:</span> {{ dados.data_ida }}</div>
+        <div class="row"><span class="label">Volta:</span> {{ dados.data_volta }}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">✈️ Voo</div>
+        <div>{{ dados.voo or '—' }}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🏨 Alojamento</div>
+        <div><span class="label">Hotel:</span> {{ dados.hotel or '—' }}</div>
+        <div><span class="label">Regime:</span> {{ dados.regime }}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🚗 Transfer</div>
+        <div>{{ dados.transfer or '—' }}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🛡️ Seguro de Viagem</div>
+        <div>{{ dados.seguro or '—' }}</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🏝️ Excursões / Actividades Sugeridas</div>
+        <div>{{ dados.excursões or '—' }}</div>
+    </div>
+
+    <hr>
+    <p style="font-style: italic; text-align: center; font-size: 14px;">
+        Esta proposta é válida por <span class="highlight">7 dias</span>. Para confirmar reserva ou obter mais informações, contacte-nos via WhatsApp.
+    </p>
+    <div class="footer">
+        Blue Palm Traveling · Viagens sem complicações · @bluepalmtraveling<br>
+        📞 +351 912 345 678 · ✉️ ola@bluepalmtraveling.com
+    </div>
+</body>
+</html>
